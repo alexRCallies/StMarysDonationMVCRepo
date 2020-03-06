@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +12,7 @@ using St.Marys_Donor.Models;
 
 namespace St.Marys_Donor.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class AdministratorsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -61,6 +64,8 @@ namespace St.Marys_Donor.Controllers
         {
             if (ModelState.IsValid)
             {
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                administrator.IdentityUserId = userId;
                 _context.Add(administrator);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
