@@ -17,10 +17,10 @@ namespace St.Marys_Donor.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "Donor" });
-            builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "Patient" });
-            builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "Hospital Administrator" });
-            builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "Admin" });
+            builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "Donor", NormalizedName = "DONOR" });
+            builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "Patient", NormalizedName = "PATIENT"});
+            builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "Hospital Administrator", NormalizedName = "HOSPITAL ADMINISTRATOR" });
+            builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "Admin", NormalizedName = "ADMIN" });
         }
         public DbSet<Administrator> Administrators { get; set; }
         public DbSet<Address> Addresses { get; set; }
