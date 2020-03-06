@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -63,6 +64,8 @@ namespace St.Marys_Donor.Controllers
         {
             if (ModelState.IsValid)
             {
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                hospital_Administrator.IdentityUserID = userId;
                 _context.Add(hospital_Administrator);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <UserSecretsId>aspnet-St.Marys_Donor-A0FD0A98-EC2E-4A4E-A338-0EED1A902B5C</UserSecretsId>
-    <RootNamespace>St.Marys_Donor</RootNamespace>
+    <UserSecretsId>aspnet-StMarys_Donor-A0FD0A98-EC2E-4A4E-A338-0EED1A902B5C</UserSecretsId>
+    <RootNamespace>StMarys_Donor</RootNamespace>
   </PropertyGroup>
 
 
