@@ -50,7 +50,7 @@ namespace St.Marys_Donor
 
             services.AddHttpClient<DonorAPIClient>(c =>
 
-            c.BaseAddress = new Uri("https://localhost:44381/api/donor/"));
+            c.BaseAddress = new Uri("https://localhost:44381/"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

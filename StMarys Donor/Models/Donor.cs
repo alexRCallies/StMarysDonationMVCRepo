@@ -19,7 +19,10 @@ namespace St.Marys_Donor.Models
         public string IdentityUserId { get; set; }
         public IdentityUser IdentityUser { get; set; }
         [ForeignKey("Address")]
-        public int AddressId { get; set; }
+        public int? AddressId { get; set; }
         public Address Address { get; set; }
+        [ForeignKey("Health_Information")]
+        public int? MedicalId { get; set; }
+        public Health_Information Health_Information { get; set; }
     }
 }
