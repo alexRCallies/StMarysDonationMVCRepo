@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using St.Marys_Donor.Data;
 using St.Marys_Donor.Models;
-using St.Marys_Donor.Models;
 using St.Marys_Donor.ViewModels;
 
 namespace St.Marys_Donor.Controllers

@@ -8,6 +8,7 @@
 
 <p>
     <a asp-action="Create" class="btn btn-sm btn-primary rounded-0 text-uppercase"><i class="fas fa-plus-circle"></i> Add New</a>
+    <a asp-action="Details" class="btn btn-sm btn-primary rounded-0 text-uppercase"><i class="fas fa-plus-circle"></i>Details</a>
 </p>
 <table class="table table-bordered">
     <thead>
@@ -19,17 +20,21 @@
     <tbody>
         @foreach (var patient in Model)
         {
-            <tr>
-                <td>
-                    <img src="~/images/@patient.ProfilePicture"
-                         class="rounded-circle"
-                         height="40" width="40"
-                         asp-append-version="true" />
-                    @patient.FullName
-                </td>
-                <td>@patient.Bio</td>>
-            </tr>
-
+        <tr>
+            <td>
+                <img src="~/images/@patient.ProfilePicture"
+                     class="rounded-circle"
+                     height="40" width="40"
+                     asp-append-version="true" />
+                @patient.FullName
+            </td>
+            <td>@patient.Bio</td>>
+            <td>
+                <a asp-action="Edit" asp-route-id="@patient.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@patient.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@patient.Id">Delete</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>
