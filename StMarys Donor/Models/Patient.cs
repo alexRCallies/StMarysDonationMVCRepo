@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -14,10 +15,17 @@ namespace St.Marys_Donor.Models
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+
+        public string FullName { get; set; }
         public string Bio { get; set; }
+        public string ProfilePicture { get; set; }
         List<string> Blogs = new List<string>();
         [ForeignKey("IdentityUser")]
         public string IdentityUserId { get; set; }
         public IdentityUser IdentityUser { get; set; }
+        public Patient()
+        {
+            FullName = FirstName + " " + LastName;
+        }
     }
 }
