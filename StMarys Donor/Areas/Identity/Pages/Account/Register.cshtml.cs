@@ -110,7 +110,7 @@ namespace St.Marys_Donor.Areas.Identity.Pages.Account
                     }
                     else if (Input.Role == "Hospital Administrator")
                     {
-                        return RedirectToAction("Create", "Hospital Administrators");
+                        return RedirectToAction("Create", "Hospital_Administrator");
                     }
                     else if (Input.Role == "Administrator")
                     {

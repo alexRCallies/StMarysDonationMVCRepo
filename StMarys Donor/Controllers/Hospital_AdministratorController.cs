@@ -7,8 +7,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using St.Marys_Donor.Data;
 using St.Marys_Donor.Models;
+using StMarys_Donor;
 
 namespace St.Marys_Donor.Controllers
 {
@@ -16,17 +18,23 @@ namespace St.Marys_Donor.Controllers
     public class Hospital_AdministratorController : Controller
     {
         private readonly ApplicationDbContext _context;
-
-        public Hospital_AdministratorController(ApplicationDbContext context)
+        private readonly DonorAPIClient _client;
+        public Hospital_AdministratorController(ApplicationDbContext context, DonorAPIClient client)
         {
             _context = context;
+            _client = client;
         }
 
         // GET: Hospital_Administrator
-        public async Task<IActionResult> Index()
+       [HttpGet]
+       public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Hospital_Administrators.Include(h => h.IdentityUser);
-            return View(await applicationDbContext.ToListAsync());
+            List<Donor> donors = new List<Donor>();
+            var listofDonors = await _client.Client.GetAsync("/api/donor");
+            listofDonors.EnsureSuccessStatusCode();
+            var responseStream = await listofDonors.Content.ReadAsStringAsync();
+            donors = JsonConvert.DeserializeObject<List<Donor>>(responseStream);
+            return Ok(donors);
         }
 
         // GET: Hospital_Administrator/Details/5
