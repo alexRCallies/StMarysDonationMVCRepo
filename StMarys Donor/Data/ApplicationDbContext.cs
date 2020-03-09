@@ -20,7 +20,7 @@ namespace St.Marys_Donor.Data
             builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "Donor", NormalizedName = "DONOR" });
             builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "Patient", NormalizedName = "PATIENT"});
             builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "Hospital Administrator", NormalizedName = "HOSPITAL ADMINISTRATOR" });
-            builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "Admin", NormalizedName = "ADMIN" });
+            builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "Administrator", NormalizedName = "ADMINISTRATOR" });
         }
         public DbSet<Administrator> Administrators { get; set; }
         public DbSet<Address> Addresses { get; set; }
