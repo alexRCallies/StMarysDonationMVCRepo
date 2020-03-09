@@ -15,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using St.Marys_Donor.ActionFilters;
+using StMarys_Donor;
 
 namespace St.Marys_Donor
 {
@@ -46,6 +47,10 @@ namespace St.Marys_Donor
             });
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            services.AddHttpClient<DonorAPIClient>(c =>
+
+            c.BaseAddress = new Uri("https://localhost:44381/api/donor/"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
