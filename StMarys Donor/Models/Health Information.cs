@@ -11,11 +11,10 @@ namespace St.Marys_Donor.Models
     {
         [Key]
         public int Id { get; set; }
-        [ForeignKey("Donor")]
-        public int DonorId { get; set; }
-        public Donor Donor { get; set; }
+        public int Age { get; set; }
         public string BloodType { get; set; }
-        public bool OnMedication { get; set; }
+        public bool OnMedications { get; set; }
+        public bool Hasallergies { get; set; }
         public int Height { get; set; }
         public int Weight { get; set; }
         public bool IsMale { get; set; }

@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using St.Marys_Donor.Data;
 using St.Marys_Donor.Models;
+using StMarys_Donor;
 
 namespace St.Marys_Donor.Controllers
 {
@@ -16,17 +20,19 @@ namespace St.Marys_Donor.Controllers
     public class DonorsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly DonorAPIClient _client;
 
-        public DonorsController(ApplicationDbContext context)
+        public DonorsController(ApplicationDbContext context, DonorAPIClient client)
         {
             _context = context;
+            _client = client;
         }
 
         // GET: Donors
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(Donor donor)
         {
-            var applicationDbContext = _context.Donors.Include(d => d.Address).Include(d => d.IdentityUser);
-            return View(await applicationDbContext.ToListAsync());
+            var donors = donor;
+            return View(donors);
         }
 
         // GET: Donors/Details/5
@@ -62,19 +68,26 @@ namespace St.Marys_Donor.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,isActive,IdentityUserId,AddressId")] Donor donor)
+        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,IdentityUserId")] Donor donor)
         {
-            if (ModelState.IsValid)
+            // make isActive = true
+            // firstName and lastName are only values passed from create view
+            donor.isActive = true;
+            donor.AddressId = null;
+            donor.FirstName = donor.FirstName.ToLower();
+            donor.LastName = donor.LastName.ToLower();
+            Donor newDonor = new Donor();
+            using (var httpClient = new HttpClient())
             {
-                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-                donor.IdentityUserId = userId;
-                _context.Add(donor);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                StringContent content = new StringContent(JsonConvert.SerializeObject(donor), Encoding.UTF8, "application/json");
+
+                using (var response = await httpClient.PostAsync("https://localhost:44381/api/donor",content))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    newDonor = JsonConvert.DeserializeObject<Donor>(apiResponse);
+                }
             }
-            ViewData["AddressId"] = new SelectList(_context.Addresses, "Id", "Id", donor.AddressId);
-            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", donor.IdentityUserId);
-            return View(donor);
+            return RedirectToAction("Index","Donors",newDonor);
         }
 
         // GET: Donors/Edit/5
