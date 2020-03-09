@@ -77,16 +77,13 @@ namespace St.Marys_Donor.Controllers
             donor.FirstName = donor.FirstName.ToLower();
             donor.LastName = donor.LastName.ToLower();
             Donor newDonor = new Donor();
-            using (var httpClient = new HttpClient())
-            {
-                StringContent content = new StringContent(JsonConvert.SerializeObject(donor), Encoding.UTF8, "application/json");
+            StringContent content = new StringContent(JsonConvert.SerializeObject(donor), Encoding.UTF8, "application/json");
 
-                using (var response = await httpClient.PostAsync("https://localhost:44381/api/donor",content))
+            using (var response = await _client.Client.PostAsync("/api/donor",content))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     newDonor = JsonConvert.DeserializeObject<Donor>(apiResponse);
                 }
-            }
             return RedirectToAction("Index","Donors",newDonor);
         }
 
