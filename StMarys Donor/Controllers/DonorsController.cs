@@ -72,7 +72,7 @@ namespace St.Marys_Donor.Controllers
         {
             // make isActive = true
             // firstName and lastName are only values passed from create view
-            donor.isActive = true;
+            donor.IsActive = true;
             donor.AddressId = null;
             donor.FirstName = donor.FirstName.ToLower();
             donor.LastName = donor.LastName.ToLower();

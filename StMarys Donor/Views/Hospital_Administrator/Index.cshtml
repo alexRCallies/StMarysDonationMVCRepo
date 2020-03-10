@@ -1,4 +1,4 @@
-﻿@model IEnumerable<St.Marys_Donor.Models.Hospital_Administrator>
+﻿@model IEnumerable<St.Marys_Donor.Models.Donor>
 
 @{
     ViewData["Title"] = "Index";
@@ -14,27 +14,66 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.HosName)
+                @Html.DisplayNameFor(model => model.FirstName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdentityUser)
+                @Html.DisplayNameFor(model => model.LastName)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.MedicalHistory.Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MedicalHistory.Height)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MedicalHistory.Weight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MedicalHistory.IsMale)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MedicalHistory.Ethnicity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MedicalHistory.Hasallergies)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MedicalHistory.OnMedications)
+            </th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.HosName)
+                @Html.DisplayFor(modelItem => item.FirstName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdentityUser.Id)
+                @Html.DisplayFor(modelItem => item.LastName)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                @Html.DisplayFor(modelItem => item.MedicalHistory.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MedicalHistory.Height)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MedicalHistory.Weight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MedicalHistory.IsMale)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MedicalHistory.Ethnicity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MedicalHistory.Hasallergies)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MedicalHistory.OnMedications)
+            </td>
+            <td>
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
 }
