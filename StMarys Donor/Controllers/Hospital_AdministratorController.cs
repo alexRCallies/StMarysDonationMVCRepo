@@ -34,6 +34,7 @@ namespace St.Marys_Donor.Controllers
             listofDonors.EnsureSuccessStatusCode();
             var responseStream = await listofDonors.Content.ReadAsStringAsync();
             donors = JsonConvert.DeserializeObject<List<Donor>>(responseStream);
+            donors.RemoveAll(d => d.IsActive == false);
             return View(donors);
         }
 

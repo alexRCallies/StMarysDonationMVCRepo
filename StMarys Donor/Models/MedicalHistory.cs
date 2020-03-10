@@ -14,9 +14,13 @@ namespace St.Marys_Donor.Models
         public int? Age { get; set; }
         public int? Height { get; set; }
         public int? Weight { get; set; }
+        [Display(Name = "Blood Type")]
         public string BloodType { get; set; }
+        [Display(Name = "Medications")]
         public bool? OnMedications { get; set; }
+        [Display(Name = "Allergies")]
         public bool? Hasallergies { get; set; }
+        [Display(Name = "Gender")]
         public bool? IsMale { get; set; }
         public string Ethnicity { get; set; }
 

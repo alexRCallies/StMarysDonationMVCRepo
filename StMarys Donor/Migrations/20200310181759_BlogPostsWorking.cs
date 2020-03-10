@@ -3,7 +3,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace StMarys_Donor.Migrations
 {
+
     public partial class BlogPostsWorking : Migration
+
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
