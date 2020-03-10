@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using St.Marys_Donor.Data;
 
 namespace StMarys_Donor.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200310204041_PatientBlogId")]
+    partial class PatientBlogId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,29 +50,29 @@ namespace StMarys_Donor.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "9cffeb4f-8f42-4227-b4b1-6d449968a866",
-                            ConcurrencyStamp = "210068e3-0f50-4360-9d84-810862117d77",
+                            Id = "67e80da1-7c90-483a-8421-30fb4641c2e4",
+                            ConcurrencyStamp = "84857163-d975-4c58-b475-737278085ad5",
                             Name = "Donor",
                             NormalizedName = "DONOR"
                         },
                         new
                         {
-                            Id = "95f4b720-2ce1-4dbb-9061-abe9b780a88a",
-                            ConcurrencyStamp = "ec2903ab-a212-4479-976a-5cf834d7ed9e",
+                            Id = "d69b0079-b200-4408-930b-eadcdfe37955",
+                            ConcurrencyStamp = "d55dcc99-971d-4b67-a170-1b5cd734fc31",
                             Name = "Patient",
                             NormalizedName = "PATIENT"
                         },
                         new
                         {
-                            Id = "1856b915-6e9f-4650-88a8-6088519f6291",
-                            ConcurrencyStamp = "dee44d3a-74bb-4c48-8b14-4fc7de70c78c",
+                            Id = "c3d7ff21-5b63-44d3-bf92-1bf113291978",
+                            ConcurrencyStamp = "4b7b06aa-f674-41a5-9253-6cc7e4cdcbff",
                             Name = "Hospital Administrator",
                             NormalizedName = "HOSPITAL ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "18eec918-f1c3-4838-90b3-82fc8a4d342b",
-                            ConcurrencyStamp = "7eab6021-1374-434a-9e67-6f9f0eaf447a",
+                            Id = "5b095a47-3b1d-4a1d-9d77-75494d5a1886",
+                            ConcurrencyStamp = "7be830da-47c5-4dd5-aeed-2eb8910f232a",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -296,15 +298,10 @@ namespace StMarys_Donor.Migrations
                     b.Property<string>("Body")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PatientId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PatientId");
 
                     b.ToTable("BlogPosts");
                 });
@@ -434,6 +431,9 @@ namespace StMarys_Donor.Migrations
                     b.Property<string>("Bio")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("BlogPostId")
+                        .HasColumnType("int");
+
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
@@ -449,10 +449,9 @@ namespace StMarys_Donor.Migrations
                     b.Property<string>("ProfilePicture")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Requirements")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("BlogPostId");
 
                     b.HasIndex("IdentityUserId");
 
@@ -517,15 +516,6 @@ namespace StMarys_Donor.Migrations
                         .HasForeignKey("IdentityUserId");
                 });
 
-            modelBuilder.Entity("St.Marys_Donor.Models.BlogPost", b =>
-                {
-                    b.HasOne("St.Marys_Donor.Models.Patient", "Patient")
-                        .WithMany()
-                        .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("St.Marys_Donor.Models.BlogUpdate", b =>
                 {
                     b.HasOne("St.Marys_Donor.Models.BlogPost", "BlogPost")
@@ -559,6 +549,10 @@ namespace StMarys_Donor.Migrations
 
             modelBuilder.Entity("St.Marys_Donor.Models.Patient", b =>
                 {
+                    b.HasOne("St.Marys_Donor.Models.BlogPost", "BlogPost")
+                        .WithMany()
+                        .HasForeignKey("BlogPostId");
+
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
                         .WithMany()
                         .HasForeignKey("IdentityUserId");

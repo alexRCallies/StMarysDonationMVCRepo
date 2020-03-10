@@ -10,8 +10,11 @@ public class PatientViewModel
         public string FirstName { get; set; }
 
         [Required(ErrorMessage = "Please enter last name")]
-        [Display(Name = "First Name")]
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
+        [Required(ErrorMessage = "Please enter requirements")]
+        [Display(Name = "Requirements")]
+        public string Requirements { get; set; }
         [Required(ErrorMessage ="Please enter Bio")]
         [Display(Name ="Bio")]
         public string Bio { get; set; }

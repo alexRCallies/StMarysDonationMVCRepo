@@ -28,6 +28,8 @@ namespace St.Marys_Donor.Data
         public DbSet<MedicalHistory> MedicalHistory { get; set; }
         public DbSet<Hospital_Administrator> Hospital_Administrators { get; set; }
         public DbSet<Patient> Patients { get; set; }
+        public DbSet<BlogPost> BlogPosts { get; set; }
+        public DbSet<BlogUpdate> BlogUpdates { get; set; }
 
     }
 }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace StMarys_Donor.Migrations
 {
-    public partial class correctnames : Migration
+    public partial class BlogPostsWorking : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -288,15 +288,56 @@ namespace StMarys_Donor.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "BlogPosts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(nullable: true),
+                    Body = table.Column<string>(nullable: true),
+                    PatientId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BlogPosts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_BlogPosts_Patients_PatientId",
+                        column: x => x.PatientId,
+                        principalTable: "Patients",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BlogUpdates",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Body = table.Column<string>(nullable: true),
+                    BlogPostId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BlogUpdates", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_BlogUpdates_BlogPosts_BlogPostId",
+                        column: x => x.BlogPostId,
+                        principalTable: "BlogPosts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "934c2d35-56ba-43dd-8884-7dc065cc918e", "31810f3d-78a0-407d-b693-c2ea324877ae", "Donor", "DONOR" },
-                    { "62d41dab-2b0e-4a4f-ad1e-4f808069033f", "3661c1a4-8b54-4f6e-afe1-bd6c3480eedf", "Patient", "PATIENT" },
-                    { "f3824a8c-5739-444f-8c94-973ca3824e2e", "eaaf30bf-37dd-4aff-9fa1-a4ca2f4a6cce", "Hospital Administrator", "HOSPITAL ADMINISTRATOR" },
-                    { "844bf275-a615-4ccd-a050-eaad19d7bce7", "73dad4f1-905a-44b0-96e1-b5a458da9a55", "Administrator", "ADMINISTRATOR" }
+                    { "8273b4c7-3dcb-4e26-b97e-aa03d88cc7e4", "7809b57f-e8ff-4525-930d-4a28f4a7a1b1", "Donor", "DONOR" },
+                    { "4f22a4f0-030e-4347-b91c-55b17da24fbf", "8122c35c-1ebf-45bc-b3b9-d5e2eb7c5797", "Patient", "PATIENT" },
+                    { "50828e35-65de-494f-a218-4bb79011008e", "130c27a3-6468-4e7c-82c7-8d97693b58a5", "Hospital Administrator", "HOSPITAL ADMINISTRATOR" },
+                    { "171a04a1-9816-4cae-a552-dfe86ffaff7c", "3286857c-3123-4f51-90ce-4ce9246609ed", "Administrator", "ADMINISTRATOR" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -342,6 +383,16 @@ namespace StMarys_Donor.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BlogPosts_PatientId",
+                table: "BlogPosts",
+                column: "PatientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BlogUpdates_BlogPostId",
+                table: "BlogUpdates",
+                column: "BlogPostId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Donors_AddressId",
@@ -390,22 +441,28 @@ namespace StMarys_Donor.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "BlogUpdates");
+
+            migrationBuilder.DropTable(
                 name: "Donors");
 
             migrationBuilder.DropTable(
                 name: "Hospital_Administrators");
 
             migrationBuilder.DropTable(
-                name: "Patients");
+                name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetRoles");
+                name: "BlogPosts");
 
             migrationBuilder.DropTable(
                 name: "Addresses");
 
             migrationBuilder.DropTable(
                 name: "MedicalHistory");
+
+            migrationBuilder.DropTable(
+                name: "Patients");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
