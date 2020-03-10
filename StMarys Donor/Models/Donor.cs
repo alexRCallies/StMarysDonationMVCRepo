@@ -14,7 +14,7 @@ namespace St.Marys_Donor.Models
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public bool isActive { get; set; }
+        public bool IsActive { get; set; }
         [ForeignKey("IdentityUser")]
         public string IdentityUserId { get; set; }
         public IdentityUser IdentityUser { get; set; }
@@ -23,6 +23,6 @@ namespace St.Marys_Donor.Models
         public Address Address { get; set; }
         [ForeignKey("Health_Information")]
         public int? MedicalId { get; set; }
-        public Health_Information Health_Information { get; set; }
+        public MedicalHistory MedicalHistory { get; set; }
     }
 }

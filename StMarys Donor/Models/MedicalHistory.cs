@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace St.Marys_Donor.Models
 {
-    public class Health_Information
+    public class MedicalHistory
     {
         [Key]
         public int Id { get; set; }
-        public int Age { get; set; }
+        public int? Age { get; set; }
+        public int? Height { get; set; }
+        public int? Weight { get; set; }
         public string BloodType { get; set; }
-        public bool OnMedications { get; set; }
-        public bool Hasallergies { get; set; }
-        public int Height { get; set; }
-        public int Weight { get; set; }
-        public bool IsMale { get; set; }
+        public bool? OnMedications { get; set; }
+        public bool? Hasallergies { get; set; }
+        public bool? IsMale { get; set; }
         public string Ethnicity { get; set; }
 
 

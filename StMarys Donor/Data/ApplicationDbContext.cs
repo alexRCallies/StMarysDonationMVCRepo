@@ -25,7 +25,7 @@ namespace St.Marys_Donor.Data
         public DbSet<Administrator> Administrators { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Donor> Donors { get; set; }
-        public DbSet<Health_Information> Health_Information { get; set; }
+        public DbSet<MedicalHistory> MedicalHistory { get; set; }
         public DbSet<Hospital_Administrator> Hospital_Administrators { get; set; }
         public DbSet<Patient> Patients { get; set; }
 
