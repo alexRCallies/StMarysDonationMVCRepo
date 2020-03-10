@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using St.Marys_Donor.Data;
 
 namespace StMarys_Donor.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200310165548_BlogToDatabase")]
+    partial class BlogToDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,29 +50,29 @@ namespace StMarys_Donor.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "7967ab4b-2964-476d-b3a8-1adb36be45d7",
-                            ConcurrencyStamp = "4d1afe07-ac81-4fa9-9c48-27890cb6f9b6",
+                            Id = "bc83b395-cb3d-4d86-be00-efd69224b0d4",
+                            ConcurrencyStamp = "de8e1558-1775-40ea-9653-ab2a496b1996",
                             Name = "Donor",
                             NormalizedName = "DONOR"
                         },
                         new
                         {
-                            Id = "0498fbaf-06fd-4af4-b98c-2ccb3349c906",
-                            ConcurrencyStamp = "c204fe76-7bfc-4d5c-977a-f1849988a2f7",
+                            Id = "2b12791a-06d9-4c4b-bf13-be5995c2cc82",
+                            ConcurrencyStamp = "96b0e75d-2d1b-4e51-b8c7-5beaba46d429",
                             Name = "Patient",
                             NormalizedName = "PATIENT"
                         },
                         new
                         {
-                            Id = "49dff7d9-aa17-402a-85d2-32263a6aefce",
-                            ConcurrencyStamp = "8bc68344-1974-4f9d-8b6b-c52011a86508",
+                            Id = "923479d2-1ebc-483f-8ef5-01aa17c7a9f3",
+                            ConcurrencyStamp = "92ff39ea-27b0-4885-8fc7-ef9e682694e2",
                             Name = "Hospital Administrator",
                             NormalizedName = "HOSPITAL ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "0d335c19-78fa-48f0-948f-06711053a7d2",
-                            ConcurrencyStamp = "489e9c7d-8d01-4d89-acb5-7085c09d66c4",
+                            Id = "8f4d7680-0c45-4859-b96e-efd6b39b7fe0",
+                            ConcurrencyStamp = "d42800a4-b032-4049-9c8e-8c8dca7561af",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });

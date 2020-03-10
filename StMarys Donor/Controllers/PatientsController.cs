@@ -189,5 +189,9 @@ namespace St.Marys_Donor.Controllers
             }
             return uniqueFileName;
         }
+        public async Task<IActionResult> CreateBlog(Patient patient)
+        {
+            return RedirectToAction("Create", "BlogPosts");
+        }
     }
 }
