@@ -48,31 +48,31 @@ namespace StMarys_Donor.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "32e09b40-c3c0-40fd-94eb-1661858438f4",
-                            ConcurrencyStamp = "f4bab371-c2ed-4603-a129-33976399c34a",
+                            Id = "45cf6237-65e2-4e32-a0b4-c7eafbbab6a1",
+                            ConcurrencyStamp = "75b40dfe-38a6-4843-a945-eac8b932ac9d",
                             Name = "Donor",
                             NormalizedName = "DONOR"
                         },
                         new
                         {
-                            Id = "331020c7-7767-44d9-a79b-ce8085c98c9b",
-                            ConcurrencyStamp = "34060c67-d79a-4aee-820c-8d84538f5593",
+                            Id = "3a87405f-e0f3-4138-9d97-a909ce3b2b79",
+                            ConcurrencyStamp = "0ae63977-0300-484c-a003-cd4a98e10589",
                             Name = "Patient",
                             NormalizedName = "PATIENT"
                         },
                         new
                         {
-                            Id = "ea989963-600e-490b-9039-09a98a4dfba6",
-                            ConcurrencyStamp = "20df0665-321b-45bc-b8b9-06c9062676f5",
+                            Id = "0531b69f-2e13-40ae-a1a7-822ba61a66fc",
+                            ConcurrencyStamp = "8e7d92fc-00ea-4eed-86de-43dcdc129c86",
                             Name = "Hospital Administrator",
                             NormalizedName = "HOSPITAL ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "11743bad-1f27-4b62-af3c-5aebf38cac2e",
-                            ConcurrencyStamp = "62f70ada-9e26-48da-912d-2314751ff7e1",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
+                            Id = "38a09e04-8f80-4169-bfa6-e04beb062009",
+                            ConcurrencyStamp = "938a03d6-a1b5-4aec-97e6-8f04e368185f",
+                            Name = "Administrator",
+                            NormalizedName = "ADMINISTRATOR"
                         });
                 });
 

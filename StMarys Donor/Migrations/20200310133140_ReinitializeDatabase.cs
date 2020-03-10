@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace StMarys_Donor.Migrations
 {
-    public partial class RenameUsingStatements : Migration
+    public partial class ReinitializeDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -60,6 +60,26 @@ namespace StMarys_Donor.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Health_Information",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Age = table.Column<int>(nullable: false),
+                    BloodType = table.Column<string>(nullable: true),
+                    OnMedications = table.Column<bool>(nullable: false),
+                    Hasallergies = table.Column<bool>(nullable: false),
+                    Height = table.Column<int>(nullable: false),
+                    Weight = table.Column<int>(nullable: false),
+                    IsMale = table.Column<bool>(nullable: false),
+                    Ethnicity = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Health_Information", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -188,35 +208,6 @@ namespace StMarys_Donor.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Donors",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true),
-                    isActive = table.Column<bool>(nullable: false),
-                    IdentityUserId = table.Column<string>(nullable: true),
-                    AddressId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Donors", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Donors_Addresses_AddressId",
-                        column: x => x.AddressId,
-                        principalTable: "Addresses",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Donors_AspNetUsers_IdentityUserId",
-                        column: x => x.IdentityUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Hospital_Administrators",
                 columns: table => new
                 {
@@ -261,28 +252,39 @@ namespace StMarys_Donor.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Health_Information",
+                name: "Donors",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    DonorId = table.Column<int>(nullable: false),
-                    BloodType = table.Column<string>(nullable: true),
-                    OnMedication = table.Column<bool>(nullable: false),
-                    Height = table.Column<int>(nullable: false),
-                    Weight = table.Column<int>(nullable: false),
-                    IsMale = table.Column<bool>(nullable: false),
-                    Ethnicity = table.Column<string>(nullable: true)
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
+                    isActive = table.Column<bool>(nullable: false),
+                    IdentityUserId = table.Column<string>(nullable: true),
+                    AddressId = table.Column<int>(nullable: true),
+                    MedicalId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Health_Information", x => x.Id);
+                    table.PrimaryKey("PK_Donors", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Health_Information_Donors_DonorId",
-                        column: x => x.DonorId,
-                        principalTable: "Donors",
+                        name: "FK_Donors_Addresses_AddressId",
+                        column: x => x.AddressId,
+                        principalTable: "Addresses",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Donors_AspNetUsers_IdentityUserId",
+                        column: x => x.IdentityUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Donors_Health_Information_MedicalId",
+                        column: x => x.MedicalId,
+                        principalTable: "Health_Information",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.InsertData(
@@ -290,10 +292,10 @@ namespace StMarys_Donor.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "4b10e422-9848-4556-8439-b28b916e44dc", "096ae6d1-3c2c-40cc-8604-ad8a73560c2e", "Donor", "DONOR" },
-                    { "592a3e4b-4132-44df-9bfc-57e0f00a28bb", "2f3a47fa-f0d6-4d8b-ae20-591f0537cc31", "Patient", "PATIENT" },
-                    { "441b14ca-d8b1-414d-9e44-c363502161eb", "0d274895-254d-43c3-ac6c-3129801f7ad5", "Hospital Administrator", "HOSPITAL ADMINISTRATOR" },
-                    { "7ee6252e-af89-4321-8355-c3bed4b97be7", "ff279bf4-4ec2-4cd3-b2cb-c2c387be5b94", "Administrator", "ADMINISTRATOR" }
+                    { "38c7d47a-c1fd-4220-ad80-67f19df3f4b2", "1731d55f-fc76-4fa8-9ae5-afe79303fb89", "Donor", "DONOR" },
+                    { "94697774-9ee8-4fda-8b65-1c70f66d3816", "1a86b059-59c7-490b-a004-7599660ad3f7", "Patient", "PATIENT" },
+                    { "feb54e20-b33f-4f81-b3a3-2a6c404f0c46", "ce31b24e-3221-4ddc-948d-f9a4aababd8b", "Hospital Administrator", "HOSPITAL ADMINISTRATOR" },
+                    { "3ccaef56-cdac-407c-82a0-6f11d1dd163b", "6d8c19fd-1da7-4935-9f01-b89b1c0f4453", "Administrator", "ADMINISTRATOR" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -351,9 +353,9 @@ namespace StMarys_Donor.Migrations
                 column: "IdentityUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Health_Information_DonorId",
-                table: "Health_Information",
-                column: "DonorId");
+                name: "IX_Donors_MedicalId",
+                table: "Donors",
+                column: "MedicalId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Hospital_Administrators_IdentityUserID",
@@ -387,7 +389,7 @@ namespace StMarys_Donor.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Health_Information");
+                name: "Donors");
 
             migrationBuilder.DropTable(
                 name: "Hospital_Administrators");
@@ -399,10 +401,10 @@ namespace StMarys_Donor.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Donors");
+                name: "Addresses");
 
             migrationBuilder.DropTable(
-                name: "Addresses");
+                name: "Health_Information");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

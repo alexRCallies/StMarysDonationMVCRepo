@@ -29,37 +29,34 @@ namespace St.Marys_Donor.Controllers
         }
 
         // GET: Donors
-        public async Task<IActionResult> Index(Donor donor)
+        public async Task<IActionResult> Index()
         {
-            var donors = donor;
-            return View(donors);
+            var listPatients = _context.Patients.Include(p => p.IdentityUser);
+            return View(await listPatients.ToListAsync());
         }
 
         // GET: Donors/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(Donor donor)
         {
-            if (id == null)
+            if (donor.IdentityUserId == null)
             {
                 return NotFound();
             }
 
-            var donor = await _context.Donors
-                .Include(d => d.Address)
-                .Include(d => d.IdentityUser)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (donor == null)
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            List<Donor> donorsAPI = new List<Donor>();
+            using (var response = await _client.Client.GetAsync("/api/donor/"))
             {
-                return NotFound();
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                donorsAPI = JsonConvert.DeserializeObject<List<Donor>>(apiResponse);
             }
-
-            return View(donor);
+            var donorLoggedIn = donorsAPI.Find(d => d.IdentityUserId == userId);
+            return View(donorLoggedIn);
         }
 
         // GET: Donors/Create
         public IActionResult Create()
         {
-            ViewData["AddressId"] = new SelectList(_context.Addresses, "Id", "Id");
-            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
             return View();
         }
 
@@ -70,12 +67,10 @@ namespace St.Marys_Donor.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,IdentityUserId")] Donor donor)
         {
-            // make isActive = true
-            // firstName and lastName are only values passed from create view
-            donor.isActive = true;
-            donor.AddressId = null;
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             donor.FirstName = donor.FirstName.ToLower();
             donor.LastName = donor.LastName.ToLower();
+            donor.IdentityUserId = userId;
             Donor newDonor = new Donor();
             StringContent content = new StringContent(JsonConvert.SerializeObject(donor), Encoding.UTF8, "application/json");
 
@@ -84,25 +79,21 @@ namespace St.Marys_Donor.Controllers
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     newDonor = JsonConvert.DeserializeObject<Donor>(apiResponse);
                 }
-            return RedirectToAction("Index","Donors",newDonor);
+            return RedirectToAction("Index","Donors");
         }
 
         // GET: Donors/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit()
         {
-            if (id == null)
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            List<Donor> donorsAPI = new List<Donor>();
+            using (var response = await _client.Client.GetAsync("/api/donor/"))
             {
-                return NotFound();
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                donorsAPI = JsonConvert.DeserializeObject<List<Donor>>(apiResponse);
             }
-
-            var donor = await _context.Donors.FindAsync(id);
-            if (donor == null)
-            {
-                return NotFound();
-            }
-            ViewData["AddressId"] = new SelectList(_context.Addresses, "Id", "Id", donor.AddressId);
-            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", donor.IdentityUserId);
-            return View(donor);
+            var donorLoggedIn = donorsAPI.Find(d => d.IdentityUserId == userId);
+            return View(donorLoggedIn);
         }
 
         // POST: Donors/Edit/5
@@ -110,36 +101,21 @@ namespace St.Marys_Donor.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,isActive,IdentityUserId,AddressId")] Donor donor)
+        public async Task<IActionResult> Edit(Donor donor)
         {
-            if (id != donor.Id)
-            {
-                return NotFound();
-            }
 
             if (ModelState.IsValid)
             {
-                try
+                Donor donorLoggedIn = donor;
+                StringContent content = new StringContent(JsonConvert.SerializeObject(donor), Encoding.UTF8, "application/json");
+
+                using (var response = await _client.Client.PutAsync("/api/donor", content))
                 {
-                    _context.Update(donor);
-                    await _context.SaveChangesAsync();
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    donorLoggedIn = JsonConvert.DeserializeObject<Donor>(apiResponse);
                 }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!DonorExists(donor.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
             }
-            ViewData["AddressId"] = new SelectList(_context.Addresses, "Id", "Id", donor.AddressId);
-            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", donor.IdentityUserId);
-            return View(donor);
+            return RedirectToAction("Index", "Donors");
         }
 
         // GET: Donors/Delete/5
@@ -159,7 +135,7 @@ namespace St.Marys_Donor.Controllers
                 return NotFound();
             }
 
-            return View(donor);
+            return RedirectToAction("Index","Donors");
         }
 
         // POST: Donors/Delete/5
