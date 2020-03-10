@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace StMarys_Donor.Migrations
 {
     public partial class ReinitializeDatabase : Migration
+
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -357,7 +358,6 @@ namespace StMarys_Donor.Migrations
                 name: "IX_Donors_MedicalHistoryId",
                 table: "Donors",
                 column: "MedicalHistoryId");
-
             migrationBuilder.CreateIndex(
                 name: "IX_Hospital_Administrators_IdentityUserID",
                 table: "Hospital_Administrators",
