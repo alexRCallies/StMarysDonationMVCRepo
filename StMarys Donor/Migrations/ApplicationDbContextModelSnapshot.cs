@@ -48,49 +48,29 @@ namespace StMarys_Donor.Migrations
                     b.HasData(
                         new
                         {
-<<<<<<< HEAD
-                            Id = "7967ab4b-2964-476d-b3a8-1adb36be45d7",
-                            ConcurrencyStamp = "4d1afe07-ac81-4fa9-9c48-27890cb6f9b6",
-=======
-                            Id = "45cf6237-65e2-4e32-a0b4-c7eafbbab6a1",
-                            ConcurrencyStamp = "75b40dfe-38a6-4843-a945-eac8b932ac9d",
->>>>>>> df84b3098cd65f7a63276422b898edbd6be8a4b3
+                            Id = "1d36879b-809a-4bce-bb92-6d027fc07a3b",
+                            ConcurrencyStamp = "30111e6a-a587-4179-8f28-06f23c06282a",
                             Name = "Donor",
                             NormalizedName = "DONOR"
                         },
                         new
                         {
-<<<<<<< HEAD
-                            Id = "0498fbaf-06fd-4af4-b98c-2ccb3349c906",
-                            ConcurrencyStamp = "c204fe76-7bfc-4d5c-977a-f1849988a2f7",
-=======
-                            Id = "3a87405f-e0f3-4138-9d97-a909ce3b2b79",
-                            ConcurrencyStamp = "0ae63977-0300-484c-a003-cd4a98e10589",
->>>>>>> df84b3098cd65f7a63276422b898edbd6be8a4b3
+                            Id = "d8936d58-ada8-473b-b6b9-fbbeab6c87b1",
+                            ConcurrencyStamp = "8b7e3c93-f3ef-43c8-8201-1cd03111573a",
                             Name = "Patient",
                             NormalizedName = "PATIENT"
                         },
                         new
                         {
-<<<<<<< HEAD
-                            Id = "49dff7d9-aa17-402a-85d2-32263a6aefce",
-                            ConcurrencyStamp = "8bc68344-1974-4f9d-8b6b-c52011a86508",
-=======
-                            Id = "0531b69f-2e13-40ae-a1a7-822ba61a66fc",
-                            ConcurrencyStamp = "8e7d92fc-00ea-4eed-86de-43dcdc129c86",
->>>>>>> df84b3098cd65f7a63276422b898edbd6be8a4b3
+                            Id = "2950edc5-b276-4a69-989a-8e90894d297b",
+                            ConcurrencyStamp = "28f30b4b-2cc4-4706-bd26-affa3e06d7d2",
                             Name = "Hospital Administrator",
                             NormalizedName = "HOSPITAL ADMINISTRATOR"
                         },
                         new
                         {
-<<<<<<< HEAD
-                            Id = "0d335c19-78fa-48f0-948f-06711053a7d2",
-                            ConcurrencyStamp = "489e9c7d-8d01-4d89-acb5-7085c09d66c4",
-=======
-                            Id = "38a09e04-8f80-4169-bfa6-e04beb062009",
-                            ConcurrencyStamp = "938a03d6-a1b5-4aec-97e6-8f04e368185f",
->>>>>>> df84b3098cd65f7a63276422b898edbd6be8a4b3
+                            Id = "919beca2-cb8e-4044-a2b9-dfe702d2a8d4",
+                            ConcurrencyStamp = "3665d321-2e39-4b3c-b97d-03e1898058f0",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });

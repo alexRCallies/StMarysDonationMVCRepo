@@ -95,6 +95,7 @@ namespace St.Marys_Donor.Controllers
             }
 
             var patient = await _context.Patients.FindAsync(id);
+           
             if (patient == null)
             {
                 return NotFound();
@@ -189,7 +190,7 @@ namespace St.Marys_Donor.Controllers
             }
             return uniqueFileName;
         }
-        public async Task<IActionResult> CreateBlog(Patient patient)
+        public async Task<IActionResult> CreateBlog()
         {
             return RedirectToAction("Create", "BlogPosts");
         }
