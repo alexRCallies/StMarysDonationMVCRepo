@@ -13,6 +13,7 @@ using St.Marys_Donor.Models;
 using StMarys_Donor;
 using MailKit.Net.Smtp;
 using MimeKit;
+using Microsoft.AspNetCore.Identity;
 
 namespace St.Marys_Donor.Controllers
 {
@@ -173,30 +174,46 @@ namespace St.Marys_Donor.Controllers
             return _context.Hospital_Administrators.Any(e => e.Id == id);
         }
 
-        //public async Task<IActionResult> EmailDonor(Donor donor)
-        //{
-        //    var donorinMVC = await _context.Donors.Where(d => d.IdentityUserId == donor.IdentityUserId).FirstOrDefaultAsync();
-        //    var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-        //    var hosAdmin = await _context.Hospital_Administrators.Where(h => h.IdentityUserID == userId).FirstOrDefaultAsync();
-        //    var message = new MimeMessage();
+        public async Task<IActionResult> EmailDonor(Donor donor)
+        {
+            var donorinMVC = await GetDonorInfoFromAPIAsync(donor.Id);
+            //var donorinMVC = await _context.Donors.Where(d => d.IdentityUserId == donor.IdentityUserId).FirstOrDefaultAsync();
+            var donorUser = await _context.Users.Where(d => d.Id == donorinMVC.IdentityUserId).FirstOrDefaultAsync();
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var hosAdminUser = await _context.Users.Where(h => h.Id == userId).FirstOrDefaultAsync();
+            var hosLoggedIn = await _context.Hospital_Administrators.Where(h => h.IdentityUserID == userId).FirstOrDefaultAsync();
+            var message = new MimeMessage();
 
-        //    message.From.Add(new MailboxAddress(hosAdmin.HosName, "hospital administator email"));
-        //    message.To.Add(new MailboxAddress(donorinMVC.FirstName));
-        //    message.Subject = $"Potential Patient Match from St. Mary's";
+            message.From.Add(new MailboxAddress(hosLoggedIn.HosName, hosAdminUser.Email));
+            message.To.Add(new MailboxAddress(donorinMVC.FirstName, donorUser.Email));
+            message.Subject = $"Potential Patient Match from St. Mary's";
 
-        //    message.Body = new TextPart(MimeKit.Text.TextFormat.Plain)
-        //    {
-        //        Text = @$"Hello! You are a potential match for a patient at {hosAdmin.HosName}. 
-        //                Please email us back as soon as you can to get more details and set up additional screening."
-        //    };
-        //    using (var client = new SmtpClient())
-        //    {
-        //        await client.ConnectAsync("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.Auto);
-        //        await client.AuthenticateAsync("hospital administator email", "password");
-        //        await client.SendAsync(message);
-        //        await client.DisconnectAsync(true);
-        //    }
+            message.Body = new TextPart(MimeKit.Text.TextFormat.Plain)
+            {
+                Text = @$"Hello! You are a potential match for a patient at {hosLoggedIn.HosName}. 
+                        Please email us back as soon as you can to get more details and set up additional screening."
+            };
+            using (var client = new SmtpClient())
+            {
+                await client.ConnectAsync("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.Auto);
+                await client.AuthenticateAsync(HospitalEmailCredentials.Email, HospitalEmailCredentials.Password);
+                await client.SendAsync(message);
+                Console.WriteLine("The email was sent successfully !!");
+                await client.DisconnectAsync(true);
+            }
+            return RedirectToAction("Index");
 
-        //}
+        }
+
+        public async Task<Donor> GetDonorInfoFromAPIAsync(int id)
+        {
+            Donor donor = new Donor();
+            using (var response = await _client.Client.GetAsync("/api/donor/" + id))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                donor = JsonConvert.DeserializeObject<Donor>(apiResponse);
+            }
+            return donor;
+        }
     }
 }
