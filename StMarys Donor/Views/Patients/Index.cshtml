@@ -4,8 +4,6 @@
     ViewData["Title"] = "Index";
 }
 
-<h4 class="text-center text-uppercase">Patients in need!</h4>
-
 <table class="table table-bordered">
     <thead>
         <tr>
@@ -13,43 +11,22 @@
             <th>@Html.DisplayNameFor(model => model.Bio)</th>
         </tr>
     </thead>
-    <tbody>
-        @foreach (var patient in Model)
-        {
-
-        }
-
-    </tbody>
-    <div class="flip-card">
-        <div class="flip-card-inner">
-            <div class="flip-card-front ">
-                <img src="~/images/12548d7c-7266-4aaf-8b08-62d8914ef221_502259.jpg" alt="Avatar" style="height: 300px; width: 300px;" >
-            </div>
-            <div class="flip-card-back " style="height: 300px; width: 300px;">
-                <h1>John Doe</h1>
-                <p>Architect & Engineer</p>
-                <p>We love that guy</p>
-            </div>
-        </div>
-    </div>
 </table>
 
+<body>
     @foreach (var patient in Model)
     {
-        <tr>
-            <td>
-                <img src="~/images/@patient.ProfilePicture"
-                     class="rounded-circle"
-                     height="40" width="40"
-                     asp-append-version="true" />
-                @patient.FullName
-            </td>
-            <td>@patient.Bio</td>>
-            <td>
-                <a asp-action="Edit" asp-route-id="@patient.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@patient.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@patient.Id">Delete</a>
-                <a asp-action="CreateBlog" asp-route-id="@patient.Id">Blog</a>
-            </td>
-        </tr>
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front ">
+                    <img src="~/images/@patient.ProfilePicture" alt="Avatar" style="height: 300px; width: 300px;">
+                </div>
+                <div class="flip-card-back " style="height: 300px; width: 300px;">
+                    <h1>@patient.FirstName</h1>
+                    <p>@patient.Bio</p>
+                    <a asp-action="Details" asp-route-id="@patient.Id">Details</a>
+                </div>
+            </div>
+        </div>
     }
+</body>
