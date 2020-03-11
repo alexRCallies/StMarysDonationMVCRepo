@@ -19,9 +19,10 @@ namespace St.Marys_Donor.Models
         public string Bio { get; set; }
         public string Requirements { get; set; }
         public string ProfilePicture { get; set; }
-        [ForeignKey("Hospital Administrator")]
+        
         public int? Hospital_AdministratorId { get; set; }
-        public Hospital_Administrator Hospital_Administrator { get; set; }
+        [ForeignKey("Hospital_AdministratorId")]
+        public virtual Hospital_Administrator Hospital_Administrators { get; set; }
         [ForeignKey("IdentityUser")]
         public string IdentityUserId { get; set; }
         public IdentityUser IdentityUser { get; set; }

@@ -12,10 +12,8 @@ using Microsoft.EntityFrameworkCore;
 using St.Marys_Donor.Data;
 using St.Marys_Donor.Models;
 using St.Marys_Donor.ViewModels;
-
 namespace St.Marys_Donor.Controllers
 {
-    
     public class PatientsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -25,14 +23,12 @@ namespace St.Marys_Donor.Controllers
             _context = context;
             webHostEnvironment = hostEnvironment;
         }
-
         // GET: Patients
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Patients.Include(p => p.IdentityUser);
             return View(await applicationDbContext.ToListAsync());
         }
-
         // GET: Patients/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -40,7 +36,6 @@ namespace St.Marys_Donor.Controllers
             {
                 return NotFound();
             }
-
             var patient = await _context.Patients
                 .Include(p => p.IdentityUser)
                 .FirstOrDefaultAsync(m => m.Id == id);
@@ -48,24 +43,21 @@ namespace St.Marys_Donor.Controllers
             {
                 return NotFound();
             }
-
             return View(patient);
         }
-
         // GET: Patients/Create
         [Authorize(Roles = "Patient")]
         public IActionResult Create()
         {
+            ViewData["Hospital_AdministratorId"] = new SelectList(_context.Hospital_Administrators, "Id", "HosName");
             ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
             return View();
         }
-
         // POST: Patients/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-
         public async Task<IActionResult> Create(PatientViewModel model)
         {
             if (ModelState.IsValid)
@@ -79,17 +71,17 @@ namespace St.Marys_Donor.Controllers
                     LastName = model.LastName,
                     FullName = model.FirstName + " " + model.LastName,
                     Requirements = model.Requirements,
-                    Hospital_AdministratorId = model.Hospital_AdministratorId,
                     Bio = model.Bio,
+                    Hospital_AdministratorId = model.Hospital_AdministratorId,
                     ProfilePicture = uniqueFileName,
                 };
                 _context.Add(patient);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["Hospital_AdministratorId"] = new SelectList(_context.Hospital_Administrators, "Id", "HosName", model.Hospital_AdministratorId);
             return View();
         }
-
         // GET: Patients/Edit/5
         [Authorize(Roles = "Patient")]
         public async Task<IActionResult> Edit(int? id)
@@ -98,9 +90,7 @@ namespace St.Marys_Donor.Controllers
             {
                 return NotFound();
             }
-
             var patient = await _context.Patients.FindAsync(id);
-           
             if (patient == null)
             {
                 return NotFound();
@@ -108,9 +98,8 @@ namespace St.Marys_Donor.Controllers
             ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", patient.IdentityUserId);
             return View(patient);
         }
-
         // POST: Patients/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -120,7 +109,6 @@ namespace St.Marys_Donor.Controllers
             {
                 return NotFound();
             }
-
             if (ModelState.IsValid)
             {
                 try
@@ -144,7 +132,6 @@ namespace St.Marys_Donor.Controllers
             ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", patient.IdentityUserId);
             return View(patient);
         }
-
         // GET: Patients/Delete/5
         [Authorize(Roles = "Patient")]
         public async Task<IActionResult> Delete(int? id)
@@ -153,7 +140,6 @@ namespace St.Marys_Donor.Controllers
             {
                 return NotFound();
             }
-
             var patient = await _context.Patients
                 .Include(p => p.IdentityUser)
                 .FirstOrDefaultAsync(m => m.Id == id);
@@ -161,10 +147,8 @@ namespace St.Marys_Donor.Controllers
             {
                 return NotFound();
             }
-
             return View(patient);
         }
-
         // POST: Patients/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -175,7 +159,6 @@ namespace St.Marys_Donor.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
         private bool PatientExists(int id)
         {
             return _context.Patients.Any(e => e.Id == id);
@@ -183,7 +166,6 @@ namespace St.Marys_Donor.Controllers
         private string UploadedFile(PatientViewModel model)
         {
             string uniqueFileName = null;
-
             if (model.ProfileImage != null)
             {
                 string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "images");
@@ -210,6 +192,5 @@ namespace St.Marys_Donor.Controllers
                 return RedirectToAction("Index", "BlogPosts");
             }
         }
-
     }
 }
