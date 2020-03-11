@@ -17,6 +17,7 @@ namespace St.Marys_Donor.Models
         public string LastName { get; set; }
         public string FullName { get; set; }
         public string Bio { get; set; }
+        public string Requirements { get; set; }
         public string ProfilePicture { get; set; }
         [ForeignKey("IdentityUser")]
         public string IdentityUserId { get; set; }

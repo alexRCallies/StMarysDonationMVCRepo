@@ -10,8 +10,8 @@ using St.Marys_Donor.Data;
 namespace StMarys_Donor.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200310181759_BlogPostsWorking")]
-    partial class BlogPostsWorking
+    [Migration("20200310205641_BlogBackOnPatient")]
+    partial class BlogBackOnPatient
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,29 +50,29 @@ namespace StMarys_Donor.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "8273b4c7-3dcb-4e26-b97e-aa03d88cc7e4",
-                            ConcurrencyStamp = "7809b57f-e8ff-4525-930d-4a28f4a7a1b1",
+                            Id = "1d36879b-809a-4bce-bb92-6d027fc07a3b",
+                            ConcurrencyStamp = "30111e6a-a587-4179-8f28-06f23c06282a",
                             Name = "Donor",
                             NormalizedName = "DONOR"
                         },
                         new
                         {
-                            Id = "4f22a4f0-030e-4347-b91c-55b17da24fbf",
-                            ConcurrencyStamp = "8122c35c-1ebf-45bc-b3b9-d5e2eb7c5797",
+                            Id = "d8936d58-ada8-473b-b6b9-fbbeab6c87b1",
+                            ConcurrencyStamp = "8b7e3c93-f3ef-43c8-8201-1cd03111573a",
                             Name = "Patient",
                             NormalizedName = "PATIENT"
                         },
                         new
                         {
-                            Id = "50828e35-65de-494f-a218-4bb79011008e",
-                            ConcurrencyStamp = "130c27a3-6468-4e7c-82c7-8d97693b58a5",
+                            Id = "2950edc5-b276-4a69-989a-8e90894d297b",
+                            ConcurrencyStamp = "28f30b4b-2cc4-4706-bd26-affa3e06d7d2",
                             Name = "Hospital Administrator",
                             NormalizedName = "HOSPITAL ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "171a04a1-9816-4cae-a552-dfe86ffaff7c",
-                            ConcurrencyStamp = "3286857c-3123-4f51-90ce-4ce9246609ed",
+                            Id = "919beca2-cb8e-4044-a2b9-dfe702d2a8d4",
+                            ConcurrencyStamp = "3665d321-2e39-4b3c-b97d-03e1898058f0",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });

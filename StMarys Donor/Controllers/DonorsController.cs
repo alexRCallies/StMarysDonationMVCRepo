@@ -74,12 +74,12 @@ namespace St.Marys_Donor.Controllers
             Donor newDonor = new Donor();
             StringContent content = new StringContent(JsonConvert.SerializeObject(donor), Encoding.UTF8, "application/json");
 
-            using (var response = await _client.Client.PostAsync("/api/donor",content))
-                {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    newDonor = JsonConvert.DeserializeObject<Donor>(apiResponse);
-                }
-            return RedirectToAction("Index","Donors");
+            using (var response = await _client.Client.PostAsync("/api/donor", content))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                newDonor = JsonConvert.DeserializeObject<Donor>(apiResponse);
+            }
+            return RedirectToAction("Index", "Donors");
         }
 
         // GET: Donors/Edit/5
@@ -103,16 +103,16 @@ namespace St.Marys_Donor.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Donor donor)
         {
-
-            if (ModelState.IsValid)
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (donor.IdentityUserId == userId)
             {
-                Donor donorLoggedIn = donor;
+                Donor donorUpdated;
                 StringContent content = new StringContent(JsonConvert.SerializeObject(donor), Encoding.UTF8, "application/json");
 
                 using (var response = await _client.Client.PutAsync("/api/donor", content))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    donorLoggedIn = JsonConvert.DeserializeObject<Donor>(apiResponse);
+                    donorUpdated = JsonConvert.DeserializeObject<Donor>(apiResponse);
                 }
             }
             return RedirectToAction("Index", "Donors");
@@ -135,7 +135,7 @@ namespace St.Marys_Donor.Controllers
                 return NotFound();
             }
 
-            return RedirectToAction("Index","Donors");
+            return RedirectToAction("Index", "Donors");
         }
 
         // POST: Donors/Delete/5

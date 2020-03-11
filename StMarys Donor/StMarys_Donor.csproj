@@ -14,6 +14,13 @@
 
 
 
+  <ItemGroup>
+    <Compile Remove="Migrations\20200310180507_ReintializingDatabase.cs" />
+    <Compile Remove="Migrations\20200310180507_ReintializingDatabase.Designer.cs" />
+  </ItemGroup>
+
+
+
 
 
   <ItemGroup>
@@ -51,6 +58,12 @@
   <ItemGroup>
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
+
+
+
+
+
+  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
 
 
 

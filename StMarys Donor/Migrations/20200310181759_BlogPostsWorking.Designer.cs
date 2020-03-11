@@ -10,8 +10,13 @@ using St.Marys_Donor.Data;
 namespace StMarys_Donor.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
+<<<<<<< HEAD:StMarys Donor/Migrations/20200310213108_Initial.Designer.cs
+    [Migration("20200310213108_Initial")]
+    partial class Initial
+=======
     [Migration("20200310181759_BlogPostsWorking")]
     partial class BlogPostsWorking
+>>>>>>> 4affc6b0f6cd540979ea6d8d4f99cfaf4f37a5a3:StMarys Donor/Migrations/20200310181759_BlogPostsWorking.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,29 +55,49 @@ namespace StMarys_Donor.Migrations
                     b.HasData(
                         new
                         {
+<<<<<<< HEAD:StMarys Donor/Migrations/20200310213108_Initial.Designer.cs
+                            Id = "b8e88eae-b716-4dbb-8a4f-acef284ce99b",
+                            ConcurrencyStamp = "cf975d04-71a5-4b2c-951a-fdf924b9caed",
+=======
                             Id = "8273b4c7-3dcb-4e26-b97e-aa03d88cc7e4",
                             ConcurrencyStamp = "7809b57f-e8ff-4525-930d-4a28f4a7a1b1",
+>>>>>>> 4affc6b0f6cd540979ea6d8d4f99cfaf4f37a5a3:StMarys Donor/Migrations/20200310181759_BlogPostsWorking.Designer.cs
                             Name = "Donor",
                             NormalizedName = "DONOR"
                         },
                         new
                         {
+<<<<<<< HEAD:StMarys Donor/Migrations/20200310213108_Initial.Designer.cs
+                            Id = "4004c0b8-b48e-4cfa-a6d6-8daa8ac41d2a",
+                            ConcurrencyStamp = "e2127bc5-e078-4d41-ad28-1df6e3874c48",
+=======
                             Id = "4f22a4f0-030e-4347-b91c-55b17da24fbf",
                             ConcurrencyStamp = "8122c35c-1ebf-45bc-b3b9-d5e2eb7c5797",
+>>>>>>> 4affc6b0f6cd540979ea6d8d4f99cfaf4f37a5a3:StMarys Donor/Migrations/20200310181759_BlogPostsWorking.Designer.cs
                             Name = "Patient",
                             NormalizedName = "PATIENT"
                         },
                         new
                         {
+<<<<<<< HEAD:StMarys Donor/Migrations/20200310213108_Initial.Designer.cs
+                            Id = "d1be7361-b266-4819-84bc-0768ed61c3b2",
+                            ConcurrencyStamp = "5e4e6159-8a0a-4524-90eb-067eb3505052",
+=======
                             Id = "50828e35-65de-494f-a218-4bb79011008e",
                             ConcurrencyStamp = "130c27a3-6468-4e7c-82c7-8d97693b58a5",
+>>>>>>> 4affc6b0f6cd540979ea6d8d4f99cfaf4f37a5a3:StMarys Donor/Migrations/20200310181759_BlogPostsWorking.Designer.cs
                             Name = "Hospital Administrator",
                             NormalizedName = "HOSPITAL ADMINISTRATOR"
                         },
                         new
                         {
+<<<<<<< HEAD:StMarys Donor/Migrations/20200310213108_Initial.Designer.cs
+                            Id = "3912a809-4f27-4f9f-8f8f-ec616fb6db5a",
+                            ConcurrencyStamp = "1f5dd66a-dde0-4dc0-9e40-33332eea523b",
+=======
                             Id = "171a04a1-9816-4cae-a552-dfe86ffaff7c",
                             ConcurrencyStamp = "3286857c-3123-4f51-90ce-4ce9246609ed",
+>>>>>>> 4affc6b0f6cd540979ea6d8d4f99cfaf4f37a5a3:StMarys Donor/Migrations/20200310181759_BlogPostsWorking.Designer.cs
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });

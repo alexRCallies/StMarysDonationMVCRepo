@@ -76,6 +76,7 @@ namespace St.Marys_Donor.Controllers
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     FullName = model.FirstName + " " + model.LastName,
+                    Requirements = model.Requirements,
                     Bio = model.Bio,
                     ProfilePicture = uniqueFileName,
                 };
@@ -95,6 +96,7 @@ namespace St.Marys_Donor.Controllers
             }
 
             var patient = await _context.Patients.FindAsync(id);
+           
             if (patient == null)
             {
                 return NotFound();
@@ -108,7 +110,7 @@ namespace St.Marys_Donor.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Bio,IdentityUserId")] Patient patient)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Requirement,Bio,IdentityUserId")] Patient patient)
         {
             if (id != patient.Id)
             {
@@ -189,7 +191,7 @@ namespace St.Marys_Donor.Controllers
             }
             return uniqueFileName;
         }
-        public async Task<IActionResult> CreateBlog(Patient patient)
+        public async Task<IActionResult> CreateBlog()
         {
             return RedirectToAction("Create", "BlogPosts");
         }

@@ -10,8 +10,13 @@ using St.Marys_Donor.Data;
 namespace StMarys_Donor.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200310181759_BlogPostsWorking")]
-    partial class BlogPostsWorking
+<<<<<<< HEAD:StMarys Donor/Migrations/20200310180637_ReintializingDatabase.Designer.cs
+    [Migration("20200310180637_ReintializingDatabase")]
+    partial class ReintializingDatabase
+=======
+    [Migration("20200310204041_PatientBlogId")]
+    partial class PatientBlogId
+>>>>>>> 790aea4c05518a3426b2d1ec124a649bb1ba7325:StMarys Donor/Migrations/20200310204041_PatientBlogId.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,29 +55,49 @@ namespace StMarys_Donor.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "8273b4c7-3dcb-4e26-b97e-aa03d88cc7e4",
-                            ConcurrencyStamp = "7809b57f-e8ff-4525-930d-4a28f4a7a1b1",
+<<<<<<< HEAD:StMarys Donor/Migrations/20200310180637_ReintializingDatabase.Designer.cs
+                            Id = "9a179858-6b01-4218-8ebf-d092c509dffa",
+                            ConcurrencyStamp = "076649ed-44ce-44fa-b532-e6cd9fbe3c03",
+=======
+                            Id = "67e80da1-7c90-483a-8421-30fb4641c2e4",
+                            ConcurrencyStamp = "84857163-d975-4c58-b475-737278085ad5",
+>>>>>>> 790aea4c05518a3426b2d1ec124a649bb1ba7325:StMarys Donor/Migrations/20200310204041_PatientBlogId.Designer.cs
                             Name = "Donor",
                             NormalizedName = "DONOR"
                         },
                         new
                         {
-                            Id = "4f22a4f0-030e-4347-b91c-55b17da24fbf",
-                            ConcurrencyStamp = "8122c35c-1ebf-45bc-b3b9-d5e2eb7c5797",
+<<<<<<< HEAD:StMarys Donor/Migrations/20200310180637_ReintializingDatabase.Designer.cs
+                            Id = "0e9630a8-4103-4683-b821-eb8b1f112609",
+                            ConcurrencyStamp = "215e1243-d0f6-459e-a882-3e186bfff4e0",
+=======
+                            Id = "d69b0079-b200-4408-930b-eadcdfe37955",
+                            ConcurrencyStamp = "d55dcc99-971d-4b67-a170-1b5cd734fc31",
+>>>>>>> 790aea4c05518a3426b2d1ec124a649bb1ba7325:StMarys Donor/Migrations/20200310204041_PatientBlogId.Designer.cs
                             Name = "Patient",
                             NormalizedName = "PATIENT"
                         },
                         new
                         {
-                            Id = "50828e35-65de-494f-a218-4bb79011008e",
-                            ConcurrencyStamp = "130c27a3-6468-4e7c-82c7-8d97693b58a5",
+<<<<<<< HEAD:StMarys Donor/Migrations/20200310180637_ReintializingDatabase.Designer.cs
+                            Id = "bf9116c0-eb9a-4132-b127-34816069f461",
+                            ConcurrencyStamp = "a1d92ef5-9480-4860-9037-2b0c4e49c145",
+=======
+                            Id = "c3d7ff21-5b63-44d3-bf92-1bf113291978",
+                            ConcurrencyStamp = "4b7b06aa-f674-41a5-9253-6cc7e4cdcbff",
+>>>>>>> 790aea4c05518a3426b2d1ec124a649bb1ba7325:StMarys Donor/Migrations/20200310204041_PatientBlogId.Designer.cs
                             Name = "Hospital Administrator",
                             NormalizedName = "HOSPITAL ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "171a04a1-9816-4cae-a552-dfe86ffaff7c",
-                            ConcurrencyStamp = "3286857c-3123-4f51-90ce-4ce9246609ed",
+<<<<<<< HEAD:StMarys Donor/Migrations/20200310180637_ReintializingDatabase.Designer.cs
+                            Id = "7d55898a-b0fa-456c-8728-8aac45f296ea",
+                            ConcurrencyStamp = "ef0b0777-37b5-45ae-b7a1-c1ddfb130c2d",
+=======
+                            Id = "5b095a47-3b1d-4a1d-9d77-75494d5a1886",
+                            ConcurrencyStamp = "7be830da-47c5-4dd5-aeed-2eb8910f232a",
+>>>>>>> 790aea4c05518a3426b2d1ec124a649bb1ba7325:StMarys Donor/Migrations/20200310204041_PatientBlogId.Designer.cs
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -298,16 +323,24 @@ namespace StMarys_Donor.Migrations
                     b.Property<string>("Body")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PatientId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PatientId");
+<<<<<<< HEAD:StMarys Donor/Migrations/20200310180637_ReintializingDatabase.Designer.cs
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("MedicalHistoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("MedicalId")
+                        .HasColumnType("int");
+=======
                     b.ToTable("BlogPosts");
                 });
 
@@ -323,22 +356,58 @@ namespace StMarys_Donor.Migrations
 
                     b.Property<string>("Body")
                         .HasColumnType("nvarchar(max)");
+>>>>>>> 790aea4c05518a3426b2d1ec124a649bb1ba7325:StMarys Donor/Migrations/20200310204041_PatientBlogId.Designer.cs
 
                     b.HasKey("Id");
 
                     b.HasIndex("BlogPostId");
 
-                    b.ToTable("BlogUpdates");
+<<<<<<< HEAD:StMarys Donor/Migrations/20200310180637_ReintializingDatabase.Designer.cs
+                    b.HasIndex("IdentityUserId");
+
+                    b.HasIndex("MedicalHistoryId");
+
+                    b.ToTable("Donors");
                 });
 
-            modelBuilder.Entity("St.Marys_Donor.Models.Donor", b =>
+            modelBuilder.Entity("St.Marys_Donor.Models.Hospital_Administrator", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("HosName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IdentityUserID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdentityUserID");
+
+                    b.ToTable("Hospital_Administrators");
+                });
+
+            modelBuilder.Entity("St.Marys_Donor.Models.MedicalHistory", b =>
+=======
+                    b.ToTable("BlogUpdates");
+                });
+
+            modelBuilder.Entity("St.Marys_Donor.Models.Donor", b =>
+>>>>>>> 790aea4c05518a3426b2d1ec124a649bb1ba7325:StMarys Donor/Migrations/20200310204041_PatientBlogId.Designer.cs
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+<<<<<<< HEAD:StMarys Donor/Migrations/20200310180637_ReintializingDatabase.Designer.cs
+                    b.Property<int?>("Age")
+=======
                     b.Property<int?>("AddressId")
+>>>>>>> 790aea4c05518a3426b2d1ec124a649bb1ba7325:StMarys Donor/Migrations/20200310204041_PatientBlogId.Designer.cs
                         .HasColumnType("int");
 
                     b.Property<string>("FirstName")
@@ -347,6 +416,21 @@ namespace StMarys_Donor.Migrations
                     b.Property<string>("IdentityUserId")
                         .HasColumnType("nvarchar(450)");
 
+<<<<<<< HEAD:StMarys Donor/Migrations/20200310180637_ReintializingDatabase.Designer.cs
+                    b.Property<bool?>("Hasallergies")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("Height")
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("IsMale")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("OnMedications")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("Weight")
+=======
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
@@ -357,10 +441,14 @@ namespace StMarys_Donor.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("MedicalId")
+>>>>>>> 790aea4c05518a3426b2d1ec124a649bb1ba7325:StMarys Donor/Migrations/20200310204041_PatientBlogId.Designer.cs
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
+<<<<<<< HEAD:StMarys Donor/Migrations/20200310180637_ReintializingDatabase.Designer.cs
+                    b.ToTable("MedicalHistory");
+=======
                     b.HasIndex("AddressId");
 
                     b.HasIndex("IdentityUserId");
@@ -388,6 +476,7 @@ namespace StMarys_Donor.Migrations
                     b.HasIndex("IdentityUserID");
 
                     b.ToTable("Hospital_Administrators");
+>>>>>>> 790aea4c05518a3426b2d1ec124a649bb1ba7325:StMarys Donor/Migrations/20200310204041_PatientBlogId.Designer.cs
                 });
 
             modelBuilder.Entity("St.Marys_Donor.Models.MedicalHistory", b =>
@@ -436,6 +525,9 @@ namespace StMarys_Donor.Migrations
                     b.Property<string>("Bio")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("BlogPostId")
+                        .HasColumnType("int");
+
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
@@ -452,6 +544,8 @@ namespace StMarys_Donor.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BlogPostId");
 
                     b.HasIndex("IdentityUserId");
 
@@ -516,15 +610,6 @@ namespace StMarys_Donor.Migrations
                         .HasForeignKey("IdentityUserId");
                 });
 
-            modelBuilder.Entity("St.Marys_Donor.Models.BlogPost", b =>
-                {
-                    b.HasOne("St.Marys_Donor.Models.Patient", "Patient")
-                        .WithMany()
-                        .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("St.Marys_Donor.Models.BlogUpdate", b =>
                 {
                     b.HasOne("St.Marys_Donor.Models.BlogPost", "BlogPost")
@@ -558,6 +643,10 @@ namespace StMarys_Donor.Migrations
 
             modelBuilder.Entity("St.Marys_Donor.Models.Patient", b =>
                 {
+                    b.HasOne("St.Marys_Donor.Models.BlogPost", "BlogPost")
+                        .WithMany()
+                        .HasForeignKey("BlogPostId");
+
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
                         .WithMany()
                         .HasForeignKey("IdentityUserId");

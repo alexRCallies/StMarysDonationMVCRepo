@@ -48,29 +48,29 @@ namespace StMarys_Donor.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "b8e88eae-b716-4dbb-8a4f-acef284ce99b",
-                            ConcurrencyStamp = "cf975d04-71a5-4b2c-951a-fdf924b9caed",
+                            Id = "9cffeb4f-8f42-4227-b4b1-6d449968a866",
+                            ConcurrencyStamp = "210068e3-0f50-4360-9d84-810862117d77",
                             Name = "Donor",
                             NormalizedName = "DONOR"
                         },
                         new
                         {
-                            Id = "4004c0b8-b48e-4cfa-a6d6-8daa8ac41d2a",
-                            ConcurrencyStamp = "e2127bc5-e078-4d41-ad28-1df6e3874c48",
+                            Id = "95f4b720-2ce1-4dbb-9061-abe9b780a88a",
+                            ConcurrencyStamp = "ec2903ab-a212-4479-976a-5cf834d7ed9e",
                             Name = "Patient",
                             NormalizedName = "PATIENT"
                         },
                         new
                         {
-                            Id = "d1be7361-b266-4819-84bc-0768ed61c3b2",
-                            ConcurrencyStamp = "5e4e6159-8a0a-4524-90eb-067eb3505052",
+                            Id = "1856b915-6e9f-4650-88a8-6088519f6291",
+                            ConcurrencyStamp = "dee44d3a-74bb-4c48-8b14-4fc7de70c78c",
                             Name = "Hospital Administrator",
                             NormalizedName = "HOSPITAL ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "3912a809-4f27-4f9f-8f8f-ec616fb6db5a",
-                            ConcurrencyStamp = "1f5dd66a-dde0-4dc0-9e40-33332eea523b",
+                            Id = "18eec918-f1c3-4838-90b3-82fc8a4d342b",
+                            ConcurrencyStamp = "7eab6021-1374-434a-9e67-6f9f0eaf447a",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -447,6 +447,9 @@ namespace StMarys_Donor.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProfilePicture")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Requirements")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
