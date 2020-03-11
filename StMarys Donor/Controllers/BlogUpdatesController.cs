@@ -11,24 +11,23 @@ using St.Marys_Donor.Models;
 
 namespace StMarys_Donor.Controllers
 {
-    public class BlogPostsController : Controller
+    public class BlogUpdatesController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public BlogPostsController(ApplicationDbContext context)
+        public BlogUpdatesController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: BlogPosts
-        public async Task<IActionResult> Index(BlogPost blogPost)
+        // GET: BlogUpdates
+        public async Task<IActionResult> Index()
         {
-            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var blog = _context.BlogPosts.Where(b => b.Patient.IdentityUserId == userId);
-            return View(blog);
+            var applicationDbContext = _context.BlogUpdates.Include(b => b.BlogPost);
+            return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: BlogPosts/Details/5
+        // GET: BlogUpdates/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -36,45 +35,45 @@ namespace StMarys_Donor.Controllers
                 return NotFound();
             }
 
-            var blogPost = await _context.BlogPosts
-                .Include(b => b.Patient)
+            var blogUpdate = await _context.BlogUpdates
+                .Include(b => b.BlogPost)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (blogPost == null)
+            if (blogUpdate == null)
             {
                 return NotFound();
             }
 
-            return View(blogPost);
+            return View(blogUpdate);
         }
 
-        // GET: BlogPosts/Create
+        // GET: BlogUpdates/Create
         public IActionResult Create()
         {
-            ViewData["PatientId"] = new SelectList(_context.Patients, "Id", "Id");
+            ViewData["BlogPostId"] = new SelectList(_context.BlogPosts, "Id", "Id");
             return View();
         }
 
-        // POST: BlogPosts/Create
+        // POST: BlogUpdates/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Body,PatientId")] BlogPost blogPost)
+        public async Task<IActionResult> Create([Bind("Id,Body,Time,BlogPostId")] BlogUpdate blogUpdate)
         {
             if (ModelState.IsValid)
             {
                 var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var patient = _context.Patients.Where(p => p.IdentityUserId == userId).FirstOrDefault();
-                blogPost.PatientId = patient.Id;
-                _context.Add(blogPost);
+                var blog = _context.BlogPosts.Where(b => b.Patient.IdentityUserId == userId).FirstOrDefault();
+                blogUpdate.Time = DateTime.Now;
+                _context.Add(blogUpdate);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index","Patients");
+                return RedirectToAction(nameof(Index));
             }
-            ViewData["PatientId"] = new SelectList(_context.Patients, "Id", "Id", blogPost.PatientId);
-            return View(blogPost);
+            ViewData["BlogPostId"] = new SelectList(_context.BlogPosts, "Id", "Id", blogUpdate.BlogPostId);
+            return View(blogUpdate);
         }
 
-        // GET: BlogPosts/Edit/5
+        // GET: BlogUpdates/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -82,23 +81,23 @@ namespace StMarys_Donor.Controllers
                 return NotFound();
             }
 
-            var blogPost = await _context.BlogPosts.FindAsync(id);
-            if (blogPost == null)
+            var blogUpdate = await _context.BlogUpdates.FindAsync(id);
+            if (blogUpdate == null)
             {
                 return NotFound();
             }
-            ViewData["PatientId"] = new SelectList(_context.Patients, "Id", "Id", blogPost.PatientId);
-            return View(blogPost);
+            ViewData["BlogPostId"] = new SelectList(_context.BlogPosts, "Id", "Id", blogUpdate.BlogPostId);
+            return View(blogUpdate);
         }
 
-        // POST: BlogPosts/Edit/5
+        // POST: BlogUpdates/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Body,PatientId")] BlogPost blogPost)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Body,Time,BlogPostId")] BlogUpdate blogUpdate)
         {
-            if (id != blogPost.Id)
+            if (id != blogUpdate.Id)
             {
                 return NotFound();
             }
@@ -107,12 +106,12 @@ namespace StMarys_Donor.Controllers
             {
                 try
                 {
-                    _context.Update(blogPost);
+                    _context.Update(blogUpdate);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!BlogPostExists(blogPost.Id))
+                    if (!BlogUpdateExists(blogUpdate.Id))
                     {
                         return NotFound();
                     }
@@ -123,11 +122,11 @@ namespace StMarys_Donor.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PatientId"] = new SelectList(_context.Patients, "Id", "Id", blogPost.PatientId);
-            return View(blogPost);
+            ViewData["BlogPostId"] = new SelectList(_context.BlogPosts, "Id", "Id", blogUpdate.BlogPostId);
+            return View(blogUpdate);
         }
 
-        // GET: BlogPosts/Delete/5
+        // GET: BlogUpdates/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -135,38 +134,32 @@ namespace StMarys_Donor.Controllers
                 return NotFound();
             }
 
-            var blogPost = await _context.BlogPosts
-                .Include(b => b.Patient)
+            var blogUpdate = await _context.BlogUpdates
+                .Include(b => b.BlogPost)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (blogPost == null)
+            if (blogUpdate == null)
             {
                 return NotFound();
             }
 
-            return View(blogPost);
+            return View(blogUpdate);
         }
 
-        // POST: BlogPosts/Delete/5
+        // POST: BlogUpdates/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var blogPost = await _context.BlogPosts.FindAsync(id);
-            _context.BlogPosts.Remove(blogPost);
+            var blogUpdate = await _context.BlogUpdates.FindAsync(id);
+            _context.BlogUpdates.Remove(blogUpdate);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool BlogPostExists(int id)
+        private bool BlogUpdateExists(int id)
         {
-            return _context.BlogPosts.Any(e => e.Id == id);
+            return _context.BlogUpdates.Any(e => e.Id == id);
         }
-        public async Task<IActionResult> AddBlogUpdate()
-        {
-            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var existingBlog = _context.BlogPosts.Where(b => b.Patient.IdentityUserId == userId);
-                return RedirectToAction("Index", "BlogUpdates");
-            
-        }
+        
     }
 }

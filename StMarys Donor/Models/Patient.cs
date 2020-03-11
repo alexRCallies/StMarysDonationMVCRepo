@@ -22,6 +22,9 @@ namespace St.Marys_Donor.Models
         [ForeignKey("IdentityUser")]
         public string IdentityUserId { get; set; }
         public IdentityUser IdentityUser { get; set; }
+        [ForeignKey("Hospital Administrator")]
+        public int Hospital_AdministratorId { get; set; }
+        public Hospital_Administrator Hospital_Administrator { get; set; }
         public Patient()
         {
             FullName = FirstName + " " + LastName;

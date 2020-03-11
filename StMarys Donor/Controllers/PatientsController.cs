@@ -15,7 +15,7 @@ using St.Marys_Donor.ViewModels;
 
 namespace St.Marys_Donor.Controllers
 {
-    [Authorize(Roles = "Patient")]
+    
     public class PatientsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -53,6 +53,7 @@ namespace St.Marys_Donor.Controllers
         }
 
         // GET: Patients/Create
+        [Authorize(Roles = "Patient")]
         public IActionResult Create()
         {
             ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
@@ -64,6 +65,7 @@ namespace St.Marys_Donor.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+
         public async Task<IActionResult> Create(PatientViewModel model)
         {
             if (ModelState.IsValid)
@@ -88,6 +90,7 @@ namespace St.Marys_Donor.Controllers
         }
 
         // GET: Patients/Edit/5
+        [Authorize(Roles = "Patient")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -142,6 +145,7 @@ namespace St.Marys_Donor.Controllers
         }
 
         // GET: Patients/Delete/5
+        [Authorize(Roles = "Patient")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -191,9 +195,20 @@ namespace St.Marys_Donor.Controllers
             }
             return uniqueFileName;
         }
+        [Authorize(Roles = "Patient")]
         public async Task<IActionResult> CreateBlog()
         {
-            return RedirectToAction("Create", "BlogPosts");
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var existingBlog = _context.BlogPosts.Where(b => b.Patient.IdentityUserId == userId);
+            if (existingBlog == null)
+            {
+                return RedirectToAction("Create", "BlogPosts");
+            }
+            else
+            {
+                return RedirectToAction("Index", "BlogPosts");
+            }
         }
+
     }
 }

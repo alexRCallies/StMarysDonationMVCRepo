@@ -48,29 +48,29 @@ namespace StMarys_Donor.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "9cffeb4f-8f42-4227-b4b1-6d449968a866",
-                            ConcurrencyStamp = "210068e3-0f50-4360-9d84-810862117d77",
+                            Id = "d44846cc-75c9-4502-9c41-f90af30e74ca",
+                            ConcurrencyStamp = "87d24da4-0c8f-469b-9252-a93880271d7f",
                             Name = "Donor",
                             NormalizedName = "DONOR"
                         },
                         new
                         {
-                            Id = "95f4b720-2ce1-4dbb-9061-abe9b780a88a",
-                            ConcurrencyStamp = "ec2903ab-a212-4479-976a-5cf834d7ed9e",
+                            Id = "11a5b0f0-036e-45d9-b59c-08e1e68b08b4",
+                            ConcurrencyStamp = "34abc531-e9f3-4ab2-b97c-502c85e779b1",
                             Name = "Patient",
                             NormalizedName = "PATIENT"
                         },
                         new
                         {
-                            Id = "1856b915-6e9f-4650-88a8-6088519f6291",
-                            ConcurrencyStamp = "dee44d3a-74bb-4c48-8b14-4fc7de70c78c",
+                            Id = "93c3c8bf-e0ee-4e11-9087-c4a262bcc4ec",
+                            ConcurrencyStamp = "efdfee6f-55cd-4dea-8c12-aec6d288663d",
                             Name = "Hospital Administrator",
                             NormalizedName = "HOSPITAL ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "18eec918-f1c3-4838-90b3-82fc8a4d342b",
-                            ConcurrencyStamp = "7eab6021-1374-434a-9e67-6f9f0eaf447a",
+                            Id = "f44b308f-58df-4c33-8f91-d274bd07276a",
+                            ConcurrencyStamp = "2ee61f06-6ca9-4e0f-9902-86d2a4f69476",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -322,6 +322,9 @@ namespace StMarys_Donor.Migrations
                     b.Property<string>("Body")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("Time")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.HasIndex("BlogPostId");
@@ -351,9 +354,6 @@ namespace StMarys_Donor.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("MedicalHistoryId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("MedicalId")
                         .HasColumnType("int");
 
@@ -363,7 +363,7 @@ namespace StMarys_Donor.Migrations
 
                     b.HasIndex("IdentityUserId");
 
-                    b.HasIndex("MedicalHistoryId");
+                    b.HasIndex("MedicalId");
 
                     b.ToTable("Donors");
                 });
@@ -440,6 +440,9 @@ namespace StMarys_Donor.Migrations
                     b.Property<string>("FullName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Hospital_AdministratorId")
+                        .HasColumnType("int");
+
                     b.Property<string>("IdentityUserId")
                         .HasColumnType("nvarchar(450)");
 
@@ -453,6 +456,8 @@ namespace StMarys_Donor.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Hospital_AdministratorId");
 
                     b.HasIndex("IdentityUserId");
 
@@ -547,7 +552,7 @@ namespace StMarys_Donor.Migrations
 
                     b.HasOne("St.Marys_Donor.Models.MedicalHistory", "MedicalHistory")
                         .WithMany()
-                        .HasForeignKey("MedicalHistoryId");
+                        .HasForeignKey("MedicalId");
                 });
 
             modelBuilder.Entity("St.Marys_Donor.Models.Hospital_Administrator", b =>
@@ -559,6 +564,12 @@ namespace StMarys_Donor.Migrations
 
             modelBuilder.Entity("St.Marys_Donor.Models.Patient", b =>
                 {
+                    b.HasOne("St.Marys_Donor.Models.Hospital_Administrator", "Hospital_Administrator")
+                        .WithMany()
+                        .HasForeignKey("Hospital_AdministratorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
                         .WithMany()
                         .HasForeignKey("IdentityUserId");
