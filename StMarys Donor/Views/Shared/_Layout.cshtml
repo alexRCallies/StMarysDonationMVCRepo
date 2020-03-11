@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - St.Marys</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-Yeti.css" />
+   
+
 
 </head>
 <body>
@@ -27,7 +29,7 @@
                         <a class="nav-link text-dark" asp-area="" asp-controller="Patients" asp-action="Index">Those In Need</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index", >Success Stories</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Success Stories</a>
                     </li>
                 </ul>
             </div>
@@ -37,6 +39,9 @@
 
     <div class="container">
         <main role="main" class="pb-3">
+            <script src="~/lib/jquery/dist/jquery.min.js"></script>
+            <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+            <script src="~/js/site.js" asp-append-version="true"></script>
             @RenderBody()
         </main>
     </div>
@@ -46,9 +51,7 @@
             &copy; 2020 - St.Marys_Donor - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+ 
     @RenderSection("Scripts", required: false)
 </body>
 </html>
