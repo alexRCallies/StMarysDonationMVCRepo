@@ -79,6 +79,7 @@ namespace St.Marys_Donor.Controllers
                     LastName = model.LastName,
                     FullName = model.FirstName + " " + model.LastName,
                     Requirements = model.Requirements,
+                    Hospital_AdministratorId = model.Hospital_AdministratorId,
                     Bio = model.Bio,
                     ProfilePicture = uniqueFileName,
                 };

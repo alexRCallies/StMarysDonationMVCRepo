@@ -6,10 +6,6 @@
 
 <h4 class="text-center text-uppercase">Patients in need!</h4>
 
-<p>
-    <a asp-action="Create" class="btn btn-sm btn-primary rounded-0 text-uppercase"><i class="fas fa-plus-circle"></i> Add New</a>
-    <a asp-action="Details" class="btn btn-sm btn-primary rounded-0 text-uppercase"><i class="fas fa-plus-circle"></i>Details</a>
-</p>
 <table class="table table-bordered">
     <thead>
         <tr>
@@ -20,6 +16,26 @@
     <tbody>
         @foreach (var patient in Model)
         {
+
+        }
+
+    </tbody>
+    <div class="flip-card">
+        <div class="flip-card-inner">
+            <div class="flip-card-front ">
+                <img src="~/images/12548d7c-7266-4aaf-8b08-62d8914ef221_502259.jpg" alt="Avatar" style="height: 300px; width: 300px;" >
+            </div>
+            <div class="flip-card-back " style="height: 300px; width: 300px;">
+                <h1>John Doe</h1>
+                <p>Architect & Engineer</p>
+                <p>We love that guy</p>
+            </div>
+        </div>
+    </div>
+</table>
+
+    @foreach (var patient in Model)
+    {
         <tr>
             <td>
                 <img src="~/images/@patient.ProfilePicture"
@@ -36,6 +52,4 @@
                 <a asp-action="CreateBlog" asp-route-id="@patient.Id">Blog</a>
             </td>
         </tr>
-        }
-    </tbody>
-</table>
+    }
