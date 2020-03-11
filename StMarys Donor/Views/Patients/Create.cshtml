@@ -1,5 +1,4 @@
 ﻿@model St.Marys_Donor.ViewModels.PatientViewModel
-
 @{
     ViewData["Title"] = "Create";
 }
@@ -40,6 +39,15 @@
                             <label asp-for="Bio" class="control-label"></label>
                             <input asp-for="Bio" class="form-control" />
                             <span asp-validation-for="Bio" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class=" row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Hospital_AdministratorId" class="control-label"></label>
+                            <input asp-for="Hospital_AdministratorId" class="form-control" />
+                            <span asp-validation-for="Hospital_AdministratorId" class="text-danger"></span>
                         </div>
                     </div>
                 </div>

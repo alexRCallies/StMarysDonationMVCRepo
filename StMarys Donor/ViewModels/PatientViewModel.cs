@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
+using St.Marys_Donor.Models;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace St.Marys_Donor.ViewModels
@@ -15,6 +17,8 @@ public class PatientViewModel
         [Required(ErrorMessage = "Please enter requirements")]
         [Display(Name = "Requirements")]
         public string Requirements { get; set; }
+        [Display(Name = "Hospital Name")]
+        public int? Hospital_AdministratorId { get; set; }
         [Required(ErrorMessage ="Please enter Bio")]
         [Display(Name ="Bio")]
         public string Bio { get; set; }
