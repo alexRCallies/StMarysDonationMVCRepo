@@ -12,6 +12,7 @@ namespace St.Marys_Donor.Models
         [Key]
         public int Id { get; set; }
         public string Body { get; set; }
+        public DateTime Time { get; set; }
         [ForeignKey("BlogPost")]
         public int BlogPostId { get; set; }
         public BlogPost BlogPost { get; set; }

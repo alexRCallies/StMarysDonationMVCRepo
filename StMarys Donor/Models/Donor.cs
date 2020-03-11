@@ -23,7 +23,7 @@ namespace St.Marys_Donor.Models
         [ForeignKey("Address")]
         public int? AddressId { get; set; }
         public Address Address { get; set; }
-        [ForeignKey("Health_Information")]
+        [ForeignKey("MedicalHistory")]
         public int? MedicalId { get; set; }
         public MedicalHistory MedicalHistory { get; set; }
     }
