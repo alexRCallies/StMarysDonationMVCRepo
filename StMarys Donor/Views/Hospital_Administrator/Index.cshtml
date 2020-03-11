@@ -7,59 +7,60 @@
 
 <h1>Index</h1>
 
-<p>
-
-</p>
-<p>
-    <label for="bloodType">Blood Type:</label>
-    <select id="bloodType">
-        <option value="null"></option>
-        <option value="a+">A+</option>
-        <option value="a-">A-</option>
-        <option value="b+">B+</option>
-        <option value="b-">B-</option>
-        <option value="ab+">AB+</option>
-        <option value="ab-">AB-</option>
-        <option value="o+">O+</option>
-        <option value="o-">O-</option>
-    </select>
-    <label for="ethnicity">Ethnicity:</label>
-    <select id="ethnicity">
-        <option value="null"></option>
-        <option value="white">White</option>
-        <option value="africanAmerican">African American</option>
-        <option value="native">Native American / Alaskan Native</option>
-        <option value="pacificIslander">Pacific Islander</option>
-        <option value="nativeHawaiian">Native Hawaiian</option>
-        <option value="asian">Asian</option>
-    </select>
-    <label for="medications">Medications:</label>
-    <select id="medications">
-        <option value="null"></option>
-        <option value="no">No</option>
-        <option value="yes">Yes</option>
-    </select>
-    <label for="allergies">Allergies:</label>
-    <select id="allergies">
-        <option value="null"></option>
-        <option value="no">No</option>
-        <option value="yes">Yes</option>
-    </select>
-    <label for="gender">Gender:</label>
-    <select id="gender">
-        <option value="null"></option>
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-    </select>
-</p>
-
-<form>
-    <label for="minage">Minimum Age</label><br>
-    <input type="text" id="minage" name="minage">
-    <label for="minweight">Minimum Weight</label><br>
-    <input type="text" id="minweight" name="minweight">
-    <label for="minheight">Minimum Height</label><br>
-    <input type="text" id="minheight" name="minheight">
+<form asp-action="Index" method="get">
+    <p>
+        <label for="bloodType">Blood Type:</label>
+        <select id="bloodType">
+            <option value="null"></option>
+            <option value="a+">A+</option>
+            <option value="a-">A-</option>
+            <option value="b+">B+</option>
+            <option value="b-">B-</option>
+            <option value="ab+">AB+</option>
+            <option value="ab-">AB-</option>
+            <option value="o+">O+</option>
+            <option value="o-">O-</option>
+        </select>
+        <label for="ethnicity">Ethnicity:</label>
+        <select id="ethnicity">
+            <option value="null"></option>
+            <option value="white">White</option>
+            <option value="africanAmerican">African American</option>
+            <option value="native">Native American / Alaskan Native</option>
+            <option value="pacificIslander">Pacific Islander</option>
+            <option value="nativeHawaiian">Native Hawaiian</option>
+            <option value="asian">Asian</option>
+        </select>
+        <label for="medications">Medications:</label>
+        <select id="medications">
+            <option value="null"></option>
+            <option value="no">No</option>
+            <option value="yes">Yes</option>
+        </select>
+        <label for="allergies">Allergies:</label>
+        <select id="allergies">
+            <option value="null"></option>
+            <option value="no">No</option>
+            <option value="yes">Yes</option>
+        </select>
+        <label for="gender">Gender:</label>
+        <select id="gender">
+            <option value="null"></option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+    </p>
+    <p>
+        <label for="minAge">Minimum Age</label>
+        <input type="text" id="minAge" name="minAge">
+        <label for="minWeight">Minimum Weight</label>
+        <input type="text" id="minWeight" name="minWeight">
+        <label for="minHeight">Minimum Height</label>
+        <input type="text" id="minHeight" name="minHeight">
+    </p>
+    <p>
+        <input type="submit" value="Search" class="btn btn-default" />
+    </p>
 </form>
 <table class="table" id="donorTable">
     <thead>
@@ -69,6 +70,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MedicalHistory.BloodType)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.MedicalHistory.Age)
@@ -94,8 +98,9 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model)
-{
+        @foreach (var item in Model)
+        {
+            //class ="row"
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.FirstName)
@@ -179,6 +184,7 @@
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
             </td>
         </tr>
-}
+        }
     </tbody>
 </table>
+<script src="site.js"></script>
