@@ -10,8 +10,8 @@ using St.Marys_Donor.Data;
 namespace StMarys_Donor.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200311160951_WhyGod")]
-    partial class WhyGod
+    [Migration("20200311183055_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,29 +50,29 @@ namespace StMarys_Donor.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c31b735f-80a0-45c5-b11a-4e3df48b3e70",
-                            ConcurrencyStamp = "8232991b-f8b7-4fdf-b96f-c646f95a0e93",
+                            Id = "d78a2a05-1f9f-4968-bd5a-d7739c913339",
+                            ConcurrencyStamp = "5f77f3ef-4e5c-4d4b-8edb-c5b678dc8ed0",
                             Name = "Donor",
                             NormalizedName = "DONOR"
                         },
                         new
                         {
-                            Id = "a92616db-3525-48ca-b23c-6cca91117093",
-                            ConcurrencyStamp = "e091c23a-5b3f-492b-b1e4-05794fb4435f",
+                            Id = "ef009bef-429b-4df9-970a-6dde9c3ad0b9",
+                            ConcurrencyStamp = "d08d5334-5fe5-4ba8-8fcf-cad9c3b64793",
                             Name = "Patient",
                             NormalizedName = "PATIENT"
                         },
                         new
                         {
-                            Id = "d9abd3fa-d224-4c62-8297-b3fa829ca55f",
-                            ConcurrencyStamp = "07e57865-594e-4cd9-9529-f0cd27461327",
+                            Id = "8f84c513-1aeb-4100-8032-ec9a764d3572",
+                            ConcurrencyStamp = "ed4cc1db-ccc6-44c1-9be0-c05c0f12bc35",
                             Name = "Hospital Administrator",
                             NormalizedName = "HOSPITAL ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "1ba0b69b-0f91-4f4b-abce-a6aad7b1483d",
-                            ConcurrencyStamp = "7db2fa55-71be-421a-98f7-b69a686f9a6f",
+                            Id = "674f5f8b-5256-45c8-8510-735994e9e7d8",
+                            ConcurrencyStamp = "b7fab969-095b-4e45-b433-351a99cff872",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -372,7 +372,7 @@ namespace StMarys_Donor.Migrations
 
             modelBuilder.Entity("St.Marys_Donor.Models.Hospital_Administrator", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("Hospital_AdministratorId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -383,7 +383,7 @@ namespace StMarys_Donor.Migrations
                     b.Property<string>("IdentityUserID")
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("Id");
+                    b.HasKey("Hospital_AdministratorId");
 
                     b.HasIndex("IdentityUserID");
 
@@ -566,7 +566,7 @@ namespace StMarys_Donor.Migrations
 
             modelBuilder.Entity("St.Marys_Donor.Models.Patient", b =>
                 {
-                    b.HasOne("St.Marys_Donor.Models.Hospital_Administrator", "Hospital_Administrator")
+                    b.HasOne("St.Marys_Donor.Models.Hospital_Administrator", "Hospital_Administrators")
                         .WithMany()
                         .HasForeignKey("Hospital_AdministratorId")
                         .OnDelete(DeleteBehavior.Cascade)

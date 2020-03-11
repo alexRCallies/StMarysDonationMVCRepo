@@ -17,7 +17,7 @@ public class PatientViewModel
         [Required(ErrorMessage = "Please enter requirements")]
         [Display(Name = "Requirements")]
         public string Requirements { get; set; }
-        [Display(Name = "Hospital Name")]
+        [Display(Name = "Hospitals")]
         public int? Hospital_AdministratorId { get; set; }
         [Required(ErrorMessage ="Please enter Bio")]
         [Display(Name ="Bio")]

@@ -2,7 +2,7 @@
 
 namespace StMarys_Donor.Migrations
 {
-    public partial class nullableHosFkInPatient : Migration
+    public partial class HospitalsID : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -10,25 +10,33 @@ namespace StMarys_Donor.Migrations
                 name: "FK_Patients_Hospital_Administrators_Hospital_AdministratorId",
                 table: "Patients");
 
-            migrationBuilder.DeleteData(
-                table: "AspNetRoles",
-                keyColumn: "Id",
-                keyValue: "1ba0b69b-0f91-4f4b-abce-a6aad7b1483d");
+            migrationBuilder.DropPrimaryKey(
+                name: "PK_Hospital_Administrators",
+                table: "Hospital_Administrators");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "a92616db-3525-48ca-b23c-6cca91117093");
+                keyValue: "62139b69-5080-43cc-a943-853888ca0fd9");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "c31b735f-80a0-45c5-b11a-4e3df48b3e70");
+                keyValue: "76c06c8b-3f1e-44b1-96fb-c92e024f22b4");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "d9abd3fa-d224-4c62-8297-b3fa829ca55f");
+                keyValue: "8d2b7e0a-e5e9-49da-85ce-c240f06be5bf");
+
+            migrationBuilder.DeleteData(
+                table: "AspNetRoles",
+                keyColumn: "Id",
+                keyValue: "9da282b1-9106-4fb4-a2e1-f4f27d2b0a96");
+
+            migrationBuilder.DropColumn(
+                name: "Hospital_AdministratorId",
+                table: "Hospital_Administrators");
 
             migrationBuilder.AlterColumn<int>(
                 name: "Hospital_AdministratorId",
@@ -37,15 +45,27 @@ namespace StMarys_Donor.Migrations
                 oldClrType: typeof(int),
                 oldType: "int");
 
+            migrationBuilder.AddColumn<int>(
+                name: "Id",
+                table: "Hospital_Administrators",
+                nullable: false,
+                defaultValue: 0)
+                .Annotation("SqlServer:Identity", "1, 1");
+
+            migrationBuilder.AddPrimaryKey(
+                name: "PK_Hospital_Administrators",
+                table: "Hospital_Administrators",
+                column: "Id");
+
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "f6963e8c-816d-464c-98a7-67c145139d24", "26668e34-a858-4452-8604-6de140c2b3e3", "Donor", "DONOR" },
-                    { "4c19dd2a-6390-4419-836c-a2e426045317", "d3bc20c6-f27c-406b-b89e-4f106c312b8b", "Patient", "PATIENT" },
-                    { "4807a37f-2f05-4aaa-ae6e-b045729f59a2", "a6b69ea6-6475-4a3e-9bed-30885093937c", "Hospital Administrator", "HOSPITAL ADMINISTRATOR" },
-                    { "d46bcf32-cadf-40c6-9cd6-a097df8e797d", "7e45c8aa-aa4b-4dc1-ad23-80c7949a7696", "Administrator", "ADMINISTRATOR" }
+                    { "2a4c00f5-97a3-4c8a-8e39-8ecc6c7cdd0d", "f5e806fe-b2bf-4a80-a978-6f28ac8dec37", "Donor", "DONOR" },
+                    { "3d396153-c38e-45ba-8f45-99bab6b54ed4", "524f3f2c-b78b-4b6f-89ba-8d428ed73654", "Patient", "PATIENT" },
+                    { "6b6f214a-66ca-4dff-b602-5eb3b6005178", "5af8d804-d55a-4130-9ed0-874966c93672", "Hospital Administrator", "HOSPITAL ADMINISTRATOR" },
+                    { "a18bd94d-96b6-41b2-b25c-986ecd831ae1", "63db1f1e-da3a-4290-b4ef-f4c79130b716", "Administrator", "ADMINISTRATOR" }
                 });
 
             migrationBuilder.AddForeignKey(
@@ -63,25 +83,33 @@ namespace StMarys_Donor.Migrations
                 name: "FK_Patients_Hospital_Administrators_Hospital_AdministratorId",
                 table: "Patients");
 
-            migrationBuilder.DeleteData(
-                table: "AspNetRoles",
-                keyColumn: "Id",
-                keyValue: "4807a37f-2f05-4aaa-ae6e-b045729f59a2");
+            migrationBuilder.DropPrimaryKey(
+                name: "PK_Hospital_Administrators",
+                table: "Hospital_Administrators");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "4c19dd2a-6390-4419-836c-a2e426045317");
+                keyValue: "2a4c00f5-97a3-4c8a-8e39-8ecc6c7cdd0d");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "d46bcf32-cadf-40c6-9cd6-a097df8e797d");
+                keyValue: "3d396153-c38e-45ba-8f45-99bab6b54ed4");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "f6963e8c-816d-464c-98a7-67c145139d24");
+                keyValue: "6b6f214a-66ca-4dff-b602-5eb3b6005178");
+
+            migrationBuilder.DeleteData(
+                table: "AspNetRoles",
+                keyColumn: "Id",
+                keyValue: "a18bd94d-96b6-41b2-b25c-986ecd831ae1");
+
+            migrationBuilder.DropColumn(
+                name: "Id",
+                table: "Hospital_Administrators");
 
             migrationBuilder.AlterColumn<int>(
                 name: "Hospital_AdministratorId",
@@ -91,15 +119,28 @@ namespace StMarys_Donor.Migrations
                 oldClrType: typeof(int),
                 oldNullable: true);
 
+            migrationBuilder.AddColumn<int>(
+                name: "Hospital_AdministratorId",
+                table: "Hospital_Administrators",
+                type: "int",
+                nullable: false,
+                defaultValue: 0)
+                .Annotation("SqlServer:Identity", "1, 1");
+
+            migrationBuilder.AddPrimaryKey(
+                name: "PK_Hospital_Administrators",
+                table: "Hospital_Administrators",
+                column: "Hospital_AdministratorId");
+
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "c31b735f-80a0-45c5-b11a-4e3df48b3e70", "8232991b-f8b7-4fdf-b96f-c646f95a0e93", "Donor", "DONOR" },
-                    { "a92616db-3525-48ca-b23c-6cca91117093", "e091c23a-5b3f-492b-b1e4-05794fb4435f", "Patient", "PATIENT" },
-                    { "d9abd3fa-d224-4c62-8297-b3fa829ca55f", "07e57865-594e-4cd9-9529-f0cd27461327", "Hospital Administrator", "HOSPITAL ADMINISTRATOR" },
-                    { "1ba0b69b-0f91-4f4b-abce-a6aad7b1483d", "7db2fa55-71be-421a-98f7-b69a686f9a6f", "Administrator", "ADMINISTRATOR" }
+                    { "76c06c8b-3f1e-44b1-96fb-c92e024f22b4", "70879c45-a366-46e9-b2bc-173ee96a7c06", "Donor", "DONOR" },
+                    { "9da282b1-9106-4fb4-a2e1-f4f27d2b0a96", "d2c08357-d73a-49f4-a19b-af1fae88e3f0", "Patient", "PATIENT" },
+                    { "8d2b7e0a-e5e9-49da-85ce-c240f06be5bf", "460f5248-6023-460c-aa55-cc6dd65150dd", "Hospital Administrator", "HOSPITAL ADMINISTRATOR" },
+                    { "62139b69-5080-43cc-a943-853888ca0fd9", "5f44b325-5a3f-400e-b40e-7625c23e1a1e", "Administrator", "ADMINISTRATOR" }
                 });
 
             migrationBuilder.AddForeignKey(
@@ -107,7 +148,7 @@ namespace StMarys_Donor.Migrations
                 table: "Patients",
                 column: "Hospital_AdministratorId",
                 principalTable: "Hospital_Administrators",
-                principalColumn: "Id",
+                principalColumn: "Hospital_AdministratorId",
                 onDelete: ReferentialAction.Cascade);
         }
     }

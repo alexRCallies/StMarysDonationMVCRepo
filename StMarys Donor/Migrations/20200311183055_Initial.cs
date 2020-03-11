@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace StMarys_Donor.Migrations
 {
-    public partial class WhyGod : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -211,14 +211,14 @@ namespace StMarys_Donor.Migrations
                 name: "Hospital_Administrators",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Hospital_AdministratorId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     HosName = table.Column<string>(nullable: true),
                     IdentityUserID = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Hospital_Administrators", x => x.Id);
+                    table.PrimaryKey("PK_Hospital_Administrators", x => x.Hospital_AdministratorId);
                     table.ForeignKey(
                         name: "FK_Hospital_Administrators_AspNetUsers_IdentityUserID",
                         column: x => x.IdentityUserID,
@@ -285,7 +285,7 @@ namespace StMarys_Donor.Migrations
                         name: "FK_Patients_Hospital_Administrators_Hospital_AdministratorId",
                         column: x => x.Hospital_AdministratorId,
                         principalTable: "Hospital_Administrators",
-                        principalColumn: "Id",
+                        principalColumn: "Hospital_AdministratorId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Patients_AspNetUsers_IdentityUserId",
@@ -342,10 +342,10 @@ namespace StMarys_Donor.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "c31b735f-80a0-45c5-b11a-4e3df48b3e70", "8232991b-f8b7-4fdf-b96f-c646f95a0e93", "Donor", "DONOR" },
-                    { "a92616db-3525-48ca-b23c-6cca91117093", "e091c23a-5b3f-492b-b1e4-05794fb4435f", "Patient", "PATIENT" },
-                    { "d9abd3fa-d224-4c62-8297-b3fa829ca55f", "07e57865-594e-4cd9-9529-f0cd27461327", "Hospital Administrator", "HOSPITAL ADMINISTRATOR" },
-                    { "1ba0b69b-0f91-4f4b-abce-a6aad7b1483d", "7db2fa55-71be-421a-98f7-b69a686f9a6f", "Administrator", "ADMINISTRATOR" }
+                    { "d78a2a05-1f9f-4968-bd5a-d7739c913339", "5f77f3ef-4e5c-4d4b-8edb-c5b678dc8ed0", "Donor", "DONOR" },
+                    { "ef009bef-429b-4df9-970a-6dde9c3ad0b9", "d08d5334-5fe5-4ba8-8fcf-cad9c3b64793", "Patient", "PATIENT" },
+                    { "8f84c513-1aeb-4100-8032-ec9a764d3572", "ed4cc1db-ccc6-44c1-9be0-c05c0f12bc35", "Hospital Administrator", "HOSPITAL ADMINISTRATOR" },
+                    { "674f5f8b-5256-45c8-8510-735994e9e7d8", "b7fab969-095b-4e45-b433-351a99cff872", "Administrator", "ADMINISTRATOR" }
                 });
 
             migrationBuilder.CreateIndex(
