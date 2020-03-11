@@ -342,10 +342,10 @@ namespace StMarys_Donor.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "7068eb43-0669-479c-93b4-9f58fd2454c4", "9f930f19-6252-47cc-9968-9d019c45b09b", "Donor", "DONOR" },
-                    { "c10d419d-fe30-4175-8413-408d805cf5c9", "7eb027a6-ea45-4a84-b06c-1a20fd690801", "Patient", "PATIENT" },
-                    { "7097a50c-e99d-4a28-ac38-65a0b98e98e0", "6e7a0fe9-15d1-429a-af61-7ccd8b53633a", "Hospital Administrator", "HOSPITAL ADMINISTRATOR" },
-                    { "71a05e22-c231-45fb-b542-09f3d469ba86", "23300eb1-b1ea-4d36-ae63-e8c5cf1b1e85", "Administrator", "ADMINISTRATOR" }
+                    { "e4e64481-1f0d-40bf-99b4-83cd266bd03c", "5e121ef5-8a45-40ff-918b-3e1ed1164d23", "Donor", "DONOR" },
+                    { "7f36a22d-1a53-49eb-a19a-58171050f22a", "ecf6fdbf-55de-45c5-b897-0cc412da4678", "Patient", "PATIENT" },
+                    { "bb51d208-682d-4d97-af70-3ea982306bec", "b4eda3e9-3e31-46c2-82f1-eab838120b7c", "Hospital Administrator", "HOSPITAL ADMINISTRATOR" },
+                    { "3ae575a3-d5b8-4b30-8dad-1be0448dadc8", "8b86441c-9615-4a00-b833-7696eecb88c4", "Administrator", "ADMINISTRATOR" }
                 });
 
             migrationBuilder.CreateIndex(
