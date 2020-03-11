@@ -7,16 +7,13 @@ using System.Threading.Tasks;
 
 namespace St.Marys_Donor.Models
 {
-    public class Address
+    public class BlogUpdate
     {
         [Key]
         public int Id { get; set; }
-        [Display(Name = "Street Address")]
-        public string StreetAddress { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        [Display(Name = "Zip Code")]
-        public int? ZipCode { get; set; }
-
+        public string Body { get; set; }
+        [ForeignKey("BlogPost")]
+        public int BlogPostId { get; set; }
+        public BlogPost BlogPost { get; set; }
     }
 }

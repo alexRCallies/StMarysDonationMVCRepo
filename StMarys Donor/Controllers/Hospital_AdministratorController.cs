@@ -34,7 +34,8 @@ namespace St.Marys_Donor.Controllers
             listofDonors.EnsureSuccessStatusCode();
             var responseStream = await listofDonors.Content.ReadAsStringAsync();
             donors = JsonConvert.DeserializeObject<List<Donor>>(responseStream);
-            return Ok(donors);
+            donors.RemoveAll(d => d.IsActive == false);
+            return View(donors);
         }
 
         // GET: Hospital_Administrator/Details/5
