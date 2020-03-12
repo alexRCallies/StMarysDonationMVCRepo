@@ -14,6 +14,7 @@ namespace St.Marys_Donor.Models
         public int Id { get; set; }
         public string Title { get; set; }
         public string Body { get; set; }
+        public List<BlogUpdate> BlogUpdates { get; set; }
         [ForeignKey("Patient")]
         public int PatientId { get; set; }
         public Patient Patient { get; set; }

@@ -251,5 +251,26 @@ namespace St.Marys_Donor.Controllers
             }
             return donor;
         }
+        public IActionResult VerifyPatients(Hospital_Administrator hospital_Administrator)
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var hospital = _context.Hospital_Administrators.Where(h => h.IdentityUserID == userId).FirstOrDefault();
+            var patientsInHospital = _context.Patients.Where(p => p.Hospital_AdministratorId == hospital.Id).ToList();
+           foreach(Patient patient in patientsInHospital)
+            {
+                hospital_Administrator.patients.Add(patient);
+            }
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> VerifyPatients(Hospital_Administrator hospital_Administrator,Patient patient)
+        {
+            foreach(Patient patients in hospital_Administrator.patients)
+            {
+                _context.Update(patients.IsVerified);
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

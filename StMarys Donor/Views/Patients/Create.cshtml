@@ -49,6 +49,7 @@
                 <select asp-for="Hospital_AdministratorId"
                         asp-items="@(new SelectList(Model.Hospital_Administrators,"Id","HosName"))">
                     <option>Please select one</option>
+                    <option>Hospital Not Listed</option>
                 </select>
                 <div class="row">
                     <div class="col-md-6">

@@ -165,7 +165,7 @@ namespace StMarys_Donor.Controllers
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var existingBlog = _context.BlogPosts.Where(b => b.Patient.IdentityUserId == userId);
-                return RedirectToAction("Index", "BlogUpdates");
+                return RedirectToAction("Create", "BlogUpdates");
             
         }
     }

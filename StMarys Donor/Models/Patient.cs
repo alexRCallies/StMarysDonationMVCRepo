@@ -21,7 +21,7 @@ namespace St.Marys_Donor.Models
         public string Requirements { get; set; }
         public string ProfilePicture { get; set; }
         public bool AcceptingDonations { get; set; }
-        
+        public bool IsVerified { get; set; }
         public int? Hospital_AdministratorId { get; set; }
         [ForeignKey("Hospital_AdministratorId")]
         public virtual Hospital_Administrator Hospital_Administrators { get; set; }
