@@ -27,7 +27,12 @@ namespace St.Marys_Donor.Controllers
             webHostEnvironment = hostEnvironment;
         }
         // GET: Patients
-        public IActionResult Index(Patient patient)
+        public async Task<IActionResult> Index()
+        {
+            var applicationDbContext = _context.Patients.Include(a => a.IdentityUser);
+            return View(await applicationDbContext.ToListAsync());
+        }
+        public IActionResult ProfilePage(Patient patient)
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var patient1 = _context.Patients.Where(x => x.IdentityUserId == userId).FirstOrDefault();
