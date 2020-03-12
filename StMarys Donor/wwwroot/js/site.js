@@ -7,7 +7,7 @@ $(document).ready(function () {
     $("#bloodType").change(function () {
         var filterValue = $(this).val();
         var row = $('.row');
-
+        var i = 3;
         row.hide()
         row.each(function (i, el) {
             if ($(el).attr('data-type') == filterValue) {

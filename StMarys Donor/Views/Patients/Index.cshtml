@@ -1,8 +1,9 @@
-<<<<<<< HEAD
-﻿@model IEnumerable<St.Marys_Donor.Models.Patient>
+@model IEnumerable<St.Marys_Donor.Models.Patient>
+
 
 @{
     ViewData["Title"] = "Index";
+
 }
 
 <table class="table table-bordered">
@@ -15,22 +16,19 @@
 </table>
 
 <body>
-    @foreach (var patient in Model)
+@foreach (var patient in Model)
     {
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front ">
-                    <img src="~/images/@patient.ProfilePicture" alt="Avatar" style="height: 300px; width: 300px;">
-                </div>
-                <div class="flip-card-back " style="height: 300px; width: 300px;">
-                    <h1>@patient.FirstName</h1>
+    <div class="flip-card">
+        <div class="flip-card-inner">
+            <div class="flip-card-front ">
+                <img src="~/images/@patient.ProfilePicture" alt="Avatar" style="height: 300px; width: 300px;">
+            </div>
+            <div class="flip-card-back " style="height: 300px; width: 300px;">
+                <h1>@patient.FirstName</h1>
                     <p>@patient.Bio</p>
                     <a asp-action="Details" asp-route-id="@patient.Id">Details</a>
-                </div>
             </div>
+        </div>
         </div>
     }
 </body>
-=======
-﻿
->>>>>>> c0f9a20efd1383a13ebc27a9209b6a3819394993
