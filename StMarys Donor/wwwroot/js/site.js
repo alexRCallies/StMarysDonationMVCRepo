@@ -6,19 +6,63 @@ $(document).ready(function () {
 
     $("#bloodType").change(function () {
         var filterValue = $(this).val();
-        var bt = $('#bloodTypes');
+        var bt = $('.bloodTypes');
         var row = $('.flex-row');
-   
-        row.hide();
-        row.each(function () {
-            bt.each(function (i, el) {
-                if ($(el).val() == filterValue) {
-                    $(el).show(); 
-                }
+
+        row.each(function (i, val) {
+            if (bt[i].innerText.toLowerCase() != filterValue.toLowerCase()) {
+                console.log(val);
+                val.hidden = true;
+            }
             });
 
-        if ("" == filterValue) {
-            row.show();
-        }
+    })
+    $("#ethnicity").change(function () {
+        var filterValue = $(this).val();
+        var ethnic = $('.ethnicity');
+        var row = $('.flex-row');
+
+        row.each(function (i, val) {
+            if (ethnic[i].innerText.toLowerCase() != filterValue.toLowerCase()) {
+                console.log(val);
+                val.hidden = true;
+            }
+        });
+    })
+    $("#gender").change(function () {
+        var filterValue = $(this).val();
+        var gen = $('.gender');
+        var row = $('.flex-row');
+
+        row.each(function (i, val) {
+            if (gen[i].innerText.toLowerCase() != filterValue.toLowerCase()) {
+                console.log(val);
+                val.hidden = true;
+            }
+        });
+    })
+    $("#medications").change(function () {
+        var filterValue = $(this).val();
+        var meds = $('.medication');
+        var row = $('.flex-row');
+
+        row.each(function (i, val) {
+            if (meds[i].innerText.toLowerCase() != filterValue.toLowerCase()) {
+                console.log(val);
+                val.hidden = true;
+            }
+        });
+    })
+    $("#allergies").change(function () {
+        var filterValue = $(this).val();
+        var alrgy = $('.allergy');
+        var row = $('.flex-row');
+
+        row.each(function (i, val) {
+            if (alrgy[i].innerText.toLowerCase() != filterValue.toLowerCase()) {
+                console.log(val);
+                val.hidden = true;
+            }
+        });
     })
 })
