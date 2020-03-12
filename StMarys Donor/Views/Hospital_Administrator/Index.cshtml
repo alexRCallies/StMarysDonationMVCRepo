@@ -6,7 +6,7 @@
 }
 
 <h1>Index</h1>
-
+<div>@Html.ActionLink("Verify Patients","VerifyPatients","Hospital_Administrator")</div>
 <form asp-action="Index" method="get">
     <p>
         <label for="bloodType">Blood Type:</label>
@@ -107,19 +107,19 @@
             <td id="lastName">
                 @Html.DisplayFor(modelItem => item.LastName)
             </td>
-            <td id="bloodTypes">
+            <td class="bloodTypes">
                 @Html.DisplayFor(modelItem => item.MedicalHistory.BloodType)
             </td>
-            <td id="age">
+            <td class="age">
                 @Html.DisplayFor(modelItem => item.MedicalHistory.Age)
             </td>
-            <td id="height">
+            <td class="height">
                 @Html.DisplayFor(modelItem => item.MedicalHistory.Height)
             </td>
-            <td id="weight">
+            <td class="weight">
                 @Html.DisplayFor(modelItem => item.MedicalHistory.Weight)
             </td>
-            <td id="gender">
+            <td class="gender">
                 @{
                     if (item.MedicalId == null)
                     {
@@ -138,10 +138,10 @@
                     }
                 }
             </td>
-            <td id="ethnicity">
+            <td class="ethnicity">
                 @Html.DisplayFor(modelItem => item.MedicalHistory.Ethnicity)
             </td>
-            <td id="allergies">
+            <td class="allergy">
                 @{
                     if (item.MedicalId == null)
                     {
@@ -160,7 +160,7 @@
                     }
                 }
             </td>
-            <td id="medications">
+            <td class="medication">
                 @{
                     if (item.MedicalId == null)
                     {
@@ -180,7 +180,6 @@
                 }
             </td>
             <td>
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="EmailDonor" asp-route-id="@item.Id">Email Donor</a>
             </td>
         </tr>

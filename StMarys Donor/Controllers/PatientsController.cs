@@ -88,12 +88,13 @@ namespace St.Marys_Donor.Controllers
                     Requirements = model.Requirements,
                     Bio = model.Bio,
                     AcceptingDonations = model.AcceptDonations,
+                    IsVerified = false,
                     Hospital_AdministratorId = model.Hospital_AdministratorId,
                     ProfilePicture = uniqueFileName,
                 };
                 _context.Add(patient);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(ProfilePage));
             }
             ViewData["Hospital_AdministratorId"] = new SelectList(_context.Hospital_Administrators, "Id", "HosName", model.Hospital_Administrators.FirstOrDefault().Id);
             return View();

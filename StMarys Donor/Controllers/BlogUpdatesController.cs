@@ -65,9 +65,10 @@ namespace StMarys_Donor.Controllers
                 var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
                 var blog = _context.BlogPosts.Where(b => b.Patient.IdentityUserId == userId).FirstOrDefault();
                 blogUpdate.Time = DateTime.Now;
+                blogUpdate.BlogPostId = blog.Id;
                 _context.Add(blogUpdate);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("ProfilePage","Patients");
             }
             ViewData["BlogPostId"] = new SelectList(_context.BlogPosts, "Id", "Id", blogUpdate.BlogPostId);
             return View(blogUpdate);
