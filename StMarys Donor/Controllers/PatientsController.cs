@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Security.Claims;
@@ -12,6 +13,8 @@ using Microsoft.EntityFrameworkCore;
 using St.Marys_Donor.Data;
 using St.Marys_Donor.Models;
 using St.Marys_Donor.ViewModels;
+using Stripe;
+
 namespace St.Marys_Donor.Controllers
 {
     public class PatientsController : Controller
@@ -49,9 +52,15 @@ namespace St.Marys_Donor.Controllers
         [Authorize(Roles = "Patient")]
         public IActionResult Create()
         {
-            ViewData["Hospital_AdministratorId"] = new SelectList(_context.Hospital_Administrators, "Id", "HosName");
+            var hospitalList = _context.Hospital_Administrators;
+            var patient = new PatientViewModel();
+            patient.Hospital_Administrators = new List<Hospital_Administrator>();
+            foreach (Hospital_Administrator hospital in hospitalList)
+            {
+                patient.Hospital_Administrators.Add(hospital);
+            }
             ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
-            return View();
+            return View(patient);
         }
         // POST: Patients/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
@@ -79,7 +88,7 @@ namespace St.Marys_Donor.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Hospital_AdministratorId"] = new SelectList(_context.Hospital_Administrators, "Id", "HosName", model.Hospital_AdministratorId);
+            ViewData["Hospital_AdministratorId"] = new SelectList(_context.Hospital_Administrators, "Id", "HosName", model.Hospital_Administrators.FirstOrDefault().Id);
             return View();
         }
         // GET: Patients/Edit/5
@@ -191,6 +200,35 @@ namespace St.Marys_Donor.Controllers
             {
                 return RedirectToAction("Index", "BlogPosts");
             }
+        }
+        public IActionResult Donate()
+        {
+            var stripePublishKey = ConfigurationManager.AppSettings["pk_test_0xjB7lds8TdnekxeDbgecAVg00Zq0woYF9"];
+            ViewBag.StripePublishKey = stripePublishKey;
+            return View();
+        }
+        public IActionResult Charge(string stripeEmail, string stripeToken)
+        {
+            var customers = new CustomerService();
+            var charges = new ChargeService();
+
+            var customer = customers.Create(new CustomerCreateOptions
+            {
+                Email = stripeEmail,
+                Source = stripeToken
+            });
+
+            var charge = charges.Create(new ChargeCreateOptions
+            {
+                Amount = 500,//charge in cents
+                Description = "Sample Charge",
+                Currency = "usd",
+                Customer = customer.Id
+            });
+
+            // further application specific code goes here
+
+            return View();
         }
     }
 }

@@ -38,6 +38,42 @@ namespace St.Marys_Donor.Controllers
             var responseStream = await listofDonors.Content.ReadAsStringAsync();
             donors = JsonConvert.DeserializeObject<List<Donor>>(responseStream);
             donors.RemoveAll(d => d.IsActive == false);
+            //if(bloodType != null)
+            //{
+            //    donors = donors.Where(d => d.MedicalHistory.BloodType == bloodType).ToList();
+            //}
+            //else if(ethnicity != null)
+            //{
+            //    donors = donors.Where(d => d.MedicalHistory.Ethnicity == ethnicity).ToList();
+            //}
+            //else if (ethnicity != null)
+            //{
+            //    donors = donors.Where(d => d.MedicalHistory.Ethnicity == ethnicity).ToList();
+            //}
+            //else if (gender == true)
+            //{
+            //    donors = donors.Where(d => d.MedicalHistory.IsMale == gender).ToList();
+            //}
+            //else if (allergies == true)
+            //{
+            //    donors = donors.Where(d => d.MedicalHistory.Hasallergies == allergies).ToList();
+            //}
+            //else if (medications == true)
+            //{
+            //    donors = donors.Where(d => d.MedicalHistory.OnMedications == medications).ToList();
+            //}
+            //else if (minHeight != 0)
+            //{
+            //    donors = donors.Where(d => d.MedicalHistory.Height >= minHeight).ToList();
+            //}
+            //else if (minWeight != 0)
+            //{
+            //    donors = donors.Where(d => d.MedicalHistory.Weight >= minWeight).ToList();
+            //}
+            //else if (minAge != 0)
+            //{
+            //    donors = donors.Where(d => d.MedicalHistory.Age >= minAge).ToList();
+            //}
             return View(donors);
         }
 
