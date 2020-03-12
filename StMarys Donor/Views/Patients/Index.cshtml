@@ -1,12 +1,5 @@
-<<<<<<< HEAD
-@model St.Marys_Donor.Models.Patient
-=======
 @model IEnumerable<St.Marys_Donor.Models.Patient>
-<<<<<<< HEAD
-=======
->>>>>>> e86119a6fcfd8ba96c41fa1560a2cea8022a0533
 
->>>>>>> 7503a61f8a6f2aa84c0b33148eca7507ab7e5337
 
 @{
     ViewData["Title"] = "Index";
@@ -14,22 +7,21 @@
 }
 
 <body>
+    @foreach (var patient in Model)
+    {
     <div class="flip-card">
         <div class="flip-card-inner">
             <div class="flip-card-front ">
-                <img src="~/images/@Model.ProfilePicture" alt="Avatar" style="height: 300px; width: 300px;">
+                <img src="~/images/@patient.ProfilePicture" alt="Avatar" style="height: 300px; width: 300px;">
             </div>
             <div class="flip-card-back " style="height: 300px; width: 300px;">
-                <h1>@Model.FirstName</h1>
-                    <p>@Model.Bio</p>
-                    <a asp-action="Details" asp-route-id="@Model.Id">Details</a>
-                <a asp-action="CreateBlog" asp-route-id="@Model.Id">Blog</a>
+                <h1>@patient.FirstName</h1>
+                    <p>@patient.Bio</p>
+                    <a asp-action="Details" asp-route-id="@patient.Id">Details</a>
+                <a asp-action="CreateBlog" asp-route-id="@patient.Id">Blog</a>
             </div>
         </div>
         </div>
     }
 </body>
-<<<<<<< HEAD
 
-=======
->>>>>>> 7503a61f8a6f2aa84c0b33148eca7507ab7e5337
