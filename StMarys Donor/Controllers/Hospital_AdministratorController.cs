@@ -14,6 +14,7 @@ using StMarys_Donor;
 using MailKit.Net.Smtp;
 using MimeKit;
 using Microsoft.AspNetCore.Identity;
+using StMarys_Donor.ViewModels;
 
 namespace St.Marys_Donor.Controllers
 {
@@ -108,18 +109,21 @@ namespace St.Marys_Donor.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,HosName,IdentityUserID")] Hospital_Administrator hospital_Administrator)
+        public async Task<IActionResult> Create(HospitalVerification model)
         {
             if (ModelState.IsValid)
             {
                 var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-                hospital_Administrator.IdentityUserID = userId;
+                Hospital_Administrator hospital_Administrator = new Hospital_Administrator();
+                {
+                    hospital_Administrator.IdentityUserID = userId;
+                    hospital_Administrator.HosName = model.HosName;
+                }
                 _context.Add(hospital_Administrator);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdentityUserID"] = new SelectList(_context.Users, "Id", "Id", hospital_Administrator.IdentityUserID);
-            return View(hospital_Administrator);
+            return View();
         }
 
         // GET: Hospital_Administrator/Edit/5
@@ -251,26 +255,49 @@ namespace St.Marys_Donor.Controllers
             }
             return donor;
         }
-        public IActionResult VerifyPatients(Hospital_Administrator hospital_Administrator)
-        {
-            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var hospital = _context.Hospital_Administrators.Where(h => h.IdentityUserID == userId).FirstOrDefault();
-            var patientsInHospital = _context.Patients.Where(p => p.Hospital_AdministratorId == hospital.Id).ToList();
-           foreach(Patient patient in patientsInHospital)
-            {
-                hospital_Administrator.patients.Add(patient);
-            }
-            return View();
-        }
-        [HttpPost]
-        public async Task<IActionResult> VerifyPatients(Hospital_Administrator hospital_Administrator,Patient patient)
-        {
-            foreach(Patient patients in hospital_Administrator.patients)
-            {
-                _context.Update(patients.IsVerified);
-                await _context.SaveChangesAsync();
-            }
-            return RedirectToAction(nameof(Index));
-        }
+        //public IActionResult VerifyPatients(Hospital_Administrator hospital_Administrator)
+        //{
+           
+        //    var patients = _context.Patients;
+        //    var hospital = new HospitalVerification();
+        //    hospital.Patients = new List<Patient>();
+        //    foreach (Patient patient in patients)
+        //    {
+        //        if
+        //    }
+        //    ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
+        //    return View(patient);
+        //}
+        //// POST: Patients/Create
+        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for
+        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create(PatientViewModel model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        string uniqueFileName = UploadedFile(model);
+        //        var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+        //        Patient patient = new Patient
+        //        {
+        //            IdentityUserId = userId,
+        //            FirstName = model.FirstName,
+        //            LastName = model.LastName,
+        //            FullName = model.FirstName + " " + model.LastName,
+        //            Requirements = model.Requirements,
+        //            Bio = model.Bio,
+        //            AcceptingDonations = model.AcceptDonations,
+        //            IsVerified = false,
+        //            Hospital_AdministratorId = model.Hospital_AdministratorId,
+        //            ProfilePicture = uniqueFileName,
+        //        };
+        //        _context.Add(patient);
+        //        await _context.SaveChangesAsync();
+        //        return RedirectToAction(nameof(ProfilePage));
+        //    }
+        //    ViewData["Hospital_AdministratorId"] = new SelectList(_context.Hospital_Administrators, "Id", "HosName", model.Hospital_Administrators.FirstOrDefault().Id);
+        //    return View();
+        //}
     }
 }
