@@ -27,16 +27,16 @@ namespace St.Marys_Donor.Controllers
             webHostEnvironment = hostEnvironment;
         }
         // GET: Patients
-        //public IActionResult Index(Patient patient)
-        //{
-        //    var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-        //    var patient1 = _context.Patients.Where(x => x.IdentityUserId == userId).FirstOrDefault();
-        //    return View(patient1);
-        //}
         public async Task<IActionResult> Index()
-        { 
-            var applicationDbContext = _context.Patients.Include(p => p.IdentityUser);
+        {
+            var applicationDbContext = _context.Patients.Include(a => a.IdentityUser);
             return View(await applicationDbContext.ToListAsync());
+        }
+        public IActionResult ProfilePage(Patient patient)
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var patient1 = _context.Patients.Where(x => x.IdentityUserId == userId).FirstOrDefault();
+            return View(patient1);
         }
         // GET: Patients/Details/
         public async Task<IActionResult> Details(int? id)
@@ -87,6 +87,7 @@ namespace St.Marys_Donor.Controllers
                     FullName = model.FirstName + " " + model.LastName,
                     Requirements = model.Requirements,
                     Bio = model.Bio,
+                    AcceptingDonations = model.AcceptDonations,
                     Hospital_AdministratorId = model.Hospital_AdministratorId,
                     ProfilePicture = uniqueFileName,
                 };
