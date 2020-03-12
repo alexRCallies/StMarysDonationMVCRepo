@@ -49,9 +49,15 @@ namespace St.Marys_Donor.Controllers
         [Authorize(Roles = "Patient")]
         public IActionResult Create()
         {
-            ViewData["Hospital_AdministratorId"] = new SelectList(_context.Hospital_Administrators, "Id", "HosName");
+            var hospitalList = _context.Hospital_Administrators;
+            var patient = new PatientViewModel();
+            patient.Hospital_Administrators = new List<Hospital_Administrator>();
+            foreach (Hospital_Administrator hospital in hospitalList)
+            {
+                patient.Hospital_Administrators.Add(hospital);
+            }
             ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
-            return View();
+            return View(patient);
         }
         // POST: Patients/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
@@ -79,7 +85,7 @@ namespace St.Marys_Donor.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Hospital_AdministratorId"] = new SelectList(_context.Hospital_Administrators, "Id", "HosName", model.Hospital_AdministratorId);
+            ViewData["Hospital_AdministratorId"] = new SelectList(_context.Hospital_Administrators, "Id", "HosName", model.Hospital_Administrators.FirstOrDefault().Id);
             return View();
         }
         // GET: Patients/Edit/5
