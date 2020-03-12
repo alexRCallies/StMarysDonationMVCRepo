@@ -27,12 +27,18 @@ namespace St.Marys_Donor.Controllers
             webHostEnvironment = hostEnvironment;
         }
         // GET: Patients
+        //public IActionResult Index(Patient patient)
+        //{
+        //    var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+        //    var patient1 = _context.Patients.Where(x => x.IdentityUserId == userId).FirstOrDefault();
+        //    return View(patient1);
+        //}
         public async Task<IActionResult> Index()
-        {
+        { 
             var applicationDbContext = _context.Patients.Include(p => p.IdentityUser);
             return View(await applicationDbContext.ToListAsync());
         }
-        // GET: Patients/Details/5
+        // GET: Patients/Details/
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -191,7 +197,7 @@ namespace St.Marys_Donor.Controllers
         public async Task<IActionResult> CreateBlog()
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var existingBlog = _context.BlogPosts.Where(b => b.Patient.IdentityUserId == userId);
+            var existingBlog = _context.BlogPosts.Where(b => b.Patient.IdentityUserId == userId).FirstOrDefault();
             if (existingBlog == null)
             {
                 return RedirectToAction("Create", "BlogPosts");
