@@ -100,26 +100,26 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr class ="row">
-            <td>
+        <tr class="flex-row">
+            <td id="firstName">
                 @Html.DisplayFor(modelItem => item.FirstName)
             </td>
-            <td>
+            <td id="lastName">
                 @Html.DisplayFor(modelItem => item.LastName)
             </td>
-            <td>
+            <td id="bloodTypes">
                 @Html.DisplayFor(modelItem => item.MedicalHistory.BloodType)
             </td>
-            <td>
+            <td id="age">
                 @Html.DisplayFor(modelItem => item.MedicalHistory.Age)
             </td>
-            <td>
+            <td id="height">
                 @Html.DisplayFor(modelItem => item.MedicalHistory.Height)
             </td>
-            <td>
+            <td id="weight">
                 @Html.DisplayFor(modelItem => item.MedicalHistory.Weight)
             </td>
-            <td>
+            <td id="gender">
                 @{
                     if (item.MedicalId == null)
                     {
@@ -138,10 +138,10 @@
                     }
                 }
             </td>
-            <td>
+            <td id="ethnicity">
                 @Html.DisplayFor(modelItem => item.MedicalHistory.Ethnicity)
             </td>
-            <td>
+            <td id="allergies">
                 @{
                     if (item.MedicalId == null)
                     {
@@ -160,7 +160,7 @@
                     }
                 }
             </td>
-            <td>
+            <td id="medications">
                 @{
                     if (item.MedicalId == null)
                     {

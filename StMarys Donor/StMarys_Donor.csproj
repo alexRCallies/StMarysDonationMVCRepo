@@ -15,13 +15,6 @@
 
 
   <ItemGroup>
-    <Compile Remove="Migrations\20200312130922_Inititsddd.cs" />
-    <Compile Remove="Migrations\20200312130922_Inititsddd.Designer.cs" />
-  </ItemGroup>
-
-
-
-  <ItemGroup>
     <COMReference Include="{d37e2a3e-8545-3a39-9f4f-31827c9124ab}">
       <Guid>d37e2a3e-8545-3a39-9f4f-31827c9124ab</Guid>
       <VersionMajor>2</VersionMajor>
