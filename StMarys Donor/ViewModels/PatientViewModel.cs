@@ -19,7 +19,8 @@ public class PatientViewModel
         [Required(ErrorMessage = "Please enter requirements")]
         [Display(Name = "Requirements")]
         public string Requirements { get; set; }
-        
+        [Display(Name = "Would You Like To Accept Donations")]
+        public bool AcceptDonations { get; set; }
         public int Hospital_AdministratorId { get; set; }
         [Display(Name = "Hospitals")]
         public List<Hospital_Administrator> Hospital_Administrators { get; set; }

@@ -24,7 +24,7 @@ namespace StMarys_Donor.Controllers
         public async Task<IActionResult> Index(BlogPost blogPost)
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var blog = _context.BlogPosts.Where(b => b.Patient.IdentityUserId == userId);
+            var blog = _context.BlogPosts.Where(b => b.Patient.IdentityUserId == userId).FirstOrDefault();
             return View(blog);
         }
 
