@@ -41,6 +41,11 @@
                         </div>
                     </div>
                 </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="AcceptDonations" /> @Html.DisplayNameFor(model => model.AcceptDonations)
+                    </label>
+                </div>
                 <select asp-for="Hospital_AdministratorId"
                         asp-items="@(new SelectList(Model.Hospital_Administrators,"Id","HosName"))">
                     <option>Please select one</option>

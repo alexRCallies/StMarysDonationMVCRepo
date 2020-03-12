@@ -1,0 +1,24 @@
+﻿
+@model St.Marys_Donor.Models.Patient
+
+@{
+    ViewData["Title"] = "ProfilePage";
+
+}
+    <body>
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front ">
+                    <img src="~/images/@Model.ProfilePicture" alt="Avatar" style="height: 300px; width: 300px;">
+                </div>
+                <div class="flip-card-back " style="height: 300px; width: 300px;">
+                    <h1>@Model.FirstName</h1>
+                    <p>@Model.Bio</p>
+                    <a asp-action="Details" asp-route-id="@Model.Id">Details</a>
+                    <a asp-action="CreateBlog" asp-route-id="@Model.Id">Blog</a>
+                </div>
+            </div>
+        </div>
+        }
+    </body>
+

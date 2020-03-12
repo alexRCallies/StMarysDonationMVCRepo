@@ -1,22 +1,18 @@
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> f9f76f01fcfe53cf392d4da53c72a72d8f5bff11
 @model IEnumerable<St.Marys_Donor.Models.Patient>
 
 @{
     ViewData["Title"] = "Index";
 
 }
-
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.FullName)</th>
-            <th>@Html.DisplayNameFor(model => model.Bio)</th>
-        </tr>
-    </thead>
-</table>
-
-<body>
 @foreach (var patient in Model)
-    {
+{
+<body>
+   
     <div class="flip-card">
         <div class="flip-card-inner">
             <div class="flip-card-front ">
@@ -26,9 +22,14 @@
                 <h1>@patient.FirstName</h1>
                     <p>@patient.Bio</p>
                     <a asp-action="Details" asp-route-id="@patient.Id">Details</a>
+                <a asp-action="CreateBlog" asp-route-id="@patient.Id">Blog</a>
             </div>
         </div>
         </div>
     }
 </body>
+<<<<<<< HEAD
 
+=======
+}
+>>>>>>> f9f76f01fcfe53cf392d4da53c72a72d8f5bff11

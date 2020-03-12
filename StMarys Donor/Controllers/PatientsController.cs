@@ -29,10 +29,16 @@ namespace St.Marys_Donor.Controllers
         // GET: Patients
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Patients.Include(p => p.IdentityUser);
+            var applicationDbContext = _context.Patients.Include(a => a.IdentityUser);
             return View(await applicationDbContext.ToListAsync());
         }
-        // GET: Patients/Details/5
+        public IActionResult ProfilePage(Patient patient)
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var patient1 = _context.Patients.Where(x => x.IdentityUserId == userId).FirstOrDefault();
+            return View(patient1);
+        }
+        // GET: Patients/Details/
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -81,6 +87,7 @@ namespace St.Marys_Donor.Controllers
                     FullName = model.FirstName + " " + model.LastName,
                     Requirements = model.Requirements,
                     Bio = model.Bio,
+                    AcceptingDonations = model.AcceptDonations,
                     Hospital_AdministratorId = model.Hospital_AdministratorId,
                     ProfilePicture = uniqueFileName,
                 };
@@ -191,7 +198,7 @@ namespace St.Marys_Donor.Controllers
         public async Task<IActionResult> CreateBlog()
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var existingBlog = _context.BlogPosts.Where(b => b.Patient.IdentityUserId == userId);
+            var existingBlog = _context.BlogPosts.Where(b => b.Patient.IdentityUserId == userId).FirstOrDefault();
             if (existingBlog == null)
             {
                 return RedirectToAction("Create", "BlogPosts");
