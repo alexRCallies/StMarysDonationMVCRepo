@@ -35,7 +35,7 @@ namespace St.Marys_Donor.ActionFilters
                 }
                else if (_claimsPrincipal.IsInRole("Patient"))
                 {
-                    context.Result = new RedirectToActionResult("Index", "Patients", null);
+                    context.Result = new RedirectToActionResult("ProfilePage", "Patients", null);
                 }
             }
         }

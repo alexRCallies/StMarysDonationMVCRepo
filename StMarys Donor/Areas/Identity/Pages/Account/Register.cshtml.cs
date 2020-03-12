@@ -100,6 +100,7 @@ namespace St.Marys_Donor.Areas.Identity.Pages.Account
                         pageHandler: null,
                         values: new { area = "Identity", userId = user.Id, code = code },
                         protocol: Request.Scheme);
+                    await _signInManager.SignInAsync(user, isPersistent: false);
                     if (Input.Role == "Donor")
                     {
                         return RedirectToAction("Create", "Donors");

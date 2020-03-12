@@ -17,5 +17,12 @@ namespace St.Marys_Donor.Models
         [ForeignKey("IdentityUser")]
         public string IdentityUserID { get; set; }
         public IdentityUser IdentityUser { get; set; }
+        
+         public List<Patient> patients = new List<Patient>();
+
     }
+
 }
+
+
+

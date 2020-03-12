@@ -1,14 +1,14 @@
-@model IEnumerable<St.Marys_Donor.Models.Patient>
 
+@model IEnumerable<St.Marys_Donor.Models.Patient>
 
 @{
     ViewData["Title"] = "Index";
 
 }
-
+@foreach (var patient in Model)
+{
 <body>
-    @foreach (var patient in Model)
-    {
+   
     <div class="flip-card">
         <div class="flip-card-inner">
             <div class="flip-card-front ">
@@ -24,4 +24,4 @@
         </div>
     }
 </body>
-
+}
