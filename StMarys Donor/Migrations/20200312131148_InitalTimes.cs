@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace StMarys_Donor.Migrations
 {
-    public partial class Initial : Migration
+    public partial class InitalTimes : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -275,6 +275,7 @@ namespace StMarys_Donor.Migrations
                     Bio = table.Column<string>(nullable: true),
                     Requirements = table.Column<string>(nullable: true),
                     ProfilePicture = table.Column<string>(nullable: true),
+                    AcceptingDonations = table.Column<bool>(nullable: false),
                     Hospital_AdministratorId = table.Column<int>(nullable: true),
                     IdentityUserId = table.Column<string>(nullable: true)
                 },
@@ -342,10 +343,10 @@ namespace StMarys_Donor.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "9fe55174-b82c-4c92-913d-03824b64ab10", "95b10b42-6050-4599-ae04-11fbf6e4a096", "Donor", "DONOR" },
-                    { "3b0c5ba5-e45e-4a13-86bc-bb0103c8203c", "a846dfc8-b7c5-4951-807e-efdf6fcddeef", "Patient", "PATIENT" },
-                    { "c5197841-fb79-4b37-bdae-8628f9ebb3ff", "a4069014-7bbb-407d-b9be-643489f321f1", "Hospital Administrator", "HOSPITAL ADMINISTRATOR" },
-                    { "ae8e3e3a-a944-44b3-a1b4-9bba19325a57", "580f665d-4239-4f75-b826-ca3e95218d6b", "Administrator", "ADMINISTRATOR" }
+                    { "b81965eb-077b-4532-bb2f-c341845d1ba3", "a128dc97-1068-401b-a9f5-438312175173", "Donor", "DONOR" },
+                    { "f7c8a7ef-ff98-4ce5-9fd6-80e79412cd26", "8fcbbe10-884c-4bbf-b77e-7b64fa92b120", "Patient", "PATIENT" },
+                    { "0b91bcf5-203e-43e7-90b5-ea093eb19297", "c8753c2e-e2ba-48e8-a502-1c6dc673e5e6", "Hospital Administrator", "HOSPITAL ADMINISTRATOR" },
+                    { "eda055bd-4072-432e-9881-d2a987628437", "3ac86dbf-f5ae-40b2-8260-cbe42f748ac9", "Administrator", "ADMINISTRATOR" }
                 });
 
             migrationBuilder.CreateIndex(

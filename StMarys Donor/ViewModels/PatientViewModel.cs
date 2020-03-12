@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using St.Marys_Donor.Models;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace St.Marys_Donor.ViewModels
 {
@@ -17,8 +19,11 @@ public class PatientViewModel
         [Required(ErrorMessage = "Please enter requirements")]
         [Display(Name = "Requirements")]
         public string Requirements { get; set; }
+        [Display(Name = "Would You Like To Accept Donations")]
+        public bool AcceptDonations { get; set; }
+        public int Hospital_AdministratorId { get; set; }
         [Display(Name = "Hospitals")]
-        public int? Hospital_AdministratorId { get; set; }
+        public List<Hospital_Administrator> Hospital_Administrators { get; set; }
         [Required(ErrorMessage ="Please enter Bio")]
         [Display(Name ="Bio")]
         public string Bio { get; set; }

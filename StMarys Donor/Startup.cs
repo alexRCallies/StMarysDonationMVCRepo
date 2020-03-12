@@ -16,6 +16,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using St.Marys_Donor.ActionFilters;
 using StMarys_Donor;
+using Stripe;
 
 namespace St.Marys_Donor
 {
@@ -60,6 +61,7 @@ namespace St.Marys_Donor
         {
             if (env.IsDevelopment())
             {
+
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
             }
@@ -76,14 +78,16 @@ namespace St.Marys_Donor
 
             app.UseAuthentication();
             app.UseAuthorization();
-
+           
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
+
             });
+            StripeConfiguration.ApiKey = "sk_test_ouZb5aGYHrgFIUbxz8ORACSd00b4QT5cQr";
         }
     }
 }

@@ -153,5 +153,10 @@ namespace St.Marys_Donor.Controllers
         {
             return _context.Donors.Any(e => e.Id == id);
         }
+        public IActionResult Donate()
+        {
+            return RedirectToAction("Donate", "Patients");
+        }
+       
     }
 }

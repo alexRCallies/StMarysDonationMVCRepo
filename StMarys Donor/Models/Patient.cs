@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using Stripe.Infrastructure;
 
 namespace St.Marys_Donor.Models
 {
@@ -19,6 +20,7 @@ namespace St.Marys_Donor.Models
         public string Bio { get; set; }
         public string Requirements { get; set; }
         public string ProfilePicture { get; set; }
+        public bool AcceptingDonations { get; set; }
         
         public int? Hospital_AdministratorId { get; set; }
         [ForeignKey("Hospital_AdministratorId")]
@@ -31,5 +33,6 @@ namespace St.Marys_Donor.Models
         {
             FullName = FirstName + " " + LastName;
         }
+
     }
 }
