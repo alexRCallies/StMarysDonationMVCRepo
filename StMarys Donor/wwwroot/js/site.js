@@ -6,14 +6,17 @@ $(document).ready(function () {
 
     $("#bloodType").change(function () {
         var filterValue = $(this).val();
-        var row = $('.row');
-        var i = 3;
-        row.hide()
-        row.each(function (i, el) {
-            if ($(el).attr('data-type') == filterValue) {
-                $(el).show();
-            }
-        });
+        var bt = $('#bloodTypes');
+        var row = $('.flex-row');
+   
+        row.hide();
+        row.each(function () {
+            bt.each(function (i, el) {
+                if ($(el).val() == filterValue) {
+                    $(el).show(); 
+                }
+            });
+
         if ("" == filterValue) {
             row.show();
         }
