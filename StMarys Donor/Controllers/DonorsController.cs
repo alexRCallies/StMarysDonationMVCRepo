@@ -79,7 +79,7 @@ namespace St.Marys_Donor.Controllers
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 newDonor = JsonConvert.DeserializeObject<Donor>(apiResponse);
             }
-            return RedirectToAction("Index", "Donors");
+            return RedirectToAction("Edit", "Donors");
         }
 
         // GET: Donors/Edit/5

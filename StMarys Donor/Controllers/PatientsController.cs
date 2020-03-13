@@ -238,5 +238,41 @@ namespace St.Marys_Donor.Controllers
 
             return View();
         }
+        public async Task<IActionResult> VerifyPatientsList()
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var hospital = _context.Hospital_Administrators.Where(h => h.IdentityUserID == userId).FirstOrDefault();
+            var applicationDbContext = _context.Patients.Where(a => a.Hospital_AdministratorId == hospital.Id);
+            return View(await applicationDbContext.ToListAsync());
+        }
+        public IActionResult VerifyPatients(int id)
+        {
+            var patient = _context.Patients.Where(p => p.Id == id).FirstOrDefault();
+            var patientViewModel = new PatientVerificationViewModel() { PatientId = id, FullName = patient.FullName };
+            return View(patientViewModel);
+        }
+        // POST: Patients/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        public IActionResult VerifyPatients(int id, PatientVerificationViewModel model)
+        {
+            
+            if (ModelState.IsValid)
+            {
+                var patient = _context.Patients.Where(p => p.Id == model.PatientId).FirstOrDefault();
+                if (model.IsVerified == true)
+                {
+                    patient.IsVerified = true;
+                }
+                else if(model.IsNotVerified ==true)
+                {
+                    patient.Hospital_AdministratorId = null;
+                }
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(model);
+        }
     }
 }

@@ -1,0 +1,34 @@
+﻿@model IEnumerable<St.Marys_Donor.Models.Patient>
+
+@{
+    ViewData["Title"] = "Index";
+
+}
+    <body>
+        @{ foreach (var patient in Model)
+            {
+               
+                @if(patient.IsVerified == false)
+                { 
+                    <div class="row">
+                          <div class="flip-card">
+                             <div class="flip-card-inner">
+                                <div class="flip-card-front ">
+                                    <img src="~/images/@patient.ProfilePicture" alt="Avatar" style="height: 250px; width: 250px;">
+                             </div>
+                             <div class="flip-card-back " style="height: 250px; width: 250px;">
+                              <a asp-action="VerifyPatients" asp-route-id="@patient.Id">
+                                  <h1>@patient.FirstName</h1>
+                                 <p>@patient.Bio</p>
+                                </a>
+                            </div>
+                         </div>
+                          </div>
+                 </div>}
+                
+                    
+
+                }
+        }
+    </body>
+

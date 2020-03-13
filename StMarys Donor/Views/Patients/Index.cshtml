@@ -18,6 +18,10 @@
                                 <a asp-action="Details" asp-route-id="@patient.Id">
                                     <h1>@patient.FirstName</h1>
                                     <p>@patient.Bio</p>
+                                    @if(patient.IsVerified)
+                                    {
+                                        <h1>This patient is verified by a Hospital</h1>
+                                    }
                                 </a>
                             </div>
                         </div>
