@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace StMarys_Donor.Migrations
 {
-    public partial class init : Migration
+    public partial class PatientList : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -278,7 +278,8 @@ namespace StMarys_Donor.Migrations
                     AcceptingDonations = table.Column<bool>(nullable: false),
                     IsVerified = table.Column<bool>(nullable: false),
                     Hospital_AdministratorId = table.Column<int>(nullable: true),
-                    IdentityUserId = table.Column<string>(nullable: true)
+                    IdentityUserId = table.Column<string>(nullable: true),
+                    PatientId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -293,6 +294,12 @@ namespace StMarys_Donor.Migrations
                         name: "FK_Patients_AspNetUsers_IdentityUserId",
                         column: x => x.IdentityUserId,
                         principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Patients_Patients_PatientId",
+                        column: x => x.PatientId,
+                        principalTable: "Patients",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -344,10 +351,10 @@ namespace StMarys_Donor.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "560ac050-4841-42c3-b253-587a551e502e", "16d6e632-b1cb-4201-b052-8aa9b5ed80ac", "Donor", "DONOR" },
-                    { "fef3d224-194e-40de-aacd-b34f7cd5e684", "df38ce32-dea1-4fdd-8ce4-ab750b2d6dd8", "Patient", "PATIENT" },
-                    { "2de32b3c-a209-4a9f-bde2-b02413a78229", "8847a9b6-a427-4da5-8ad7-f555d3c48677", "Hospital Administrator", "HOSPITAL ADMINISTRATOR" },
-                    { "b1dd0b58-07af-4fe3-b2d6-e7d11a4a149d", "b5d63234-0cbf-4c73-96be-cafa7748ecc1", "Administrator", "ADMINISTRATOR" }
+                    { "90168106-8f4e-41ba-a020-9b7aa1113997", "e39b0408-a13a-48b2-8489-7ff53e4f46ed", "Donor", "DONOR" },
+                    { "19393b34-7d19-4c49-8b8c-fdcef71c024b", "23902ef4-dfae-4ee4-9be4-f1ab30c3f1c1", "Patient", "PATIENT" },
+                    { "1821c1f4-f7bb-47ed-8c98-4d746cc42017", "619282ce-d3a3-45dc-8c0d-fe9568765c5d", "Hospital Administrator", "HOSPITAL ADMINISTRATOR" },
+                    { "cc0f6bb5-278f-49e4-99ea-ed2883938bb2", "f6a00acd-71a1-42e8-a1d9-20b23facd781", "Administrator", "ADMINISTRATOR" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -433,6 +440,11 @@ namespace StMarys_Donor.Migrations
                 name: "IX_Patients_IdentityUserId",
                 table: "Patients",
                 column: "IdentityUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Patients_PatientId",
+                table: "Patients",
+                column: "PatientId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -1,0 +1,27 @@
+﻿@model St.Marys_Donor.ViewModels.PatientVerificationViewModel
+@{
+    ViewData["Title"] = "VerifyPatients";
+}
+@using (Html.BeginForm())
+{
+    <h1>VerifyPatients</h1>
+
+
+    <dt class="col-sm-2">
+        Patient Name
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.FullName)
+    </dd>
+    @Html.HiddenFor(s => s.FullName)
+    @Html.HiddenFor(s => s.PatientId)
+    <dd class="col-sm-2">
+        @Html.DisplayNameFor(model => model.IsVerified)
+    </dd>
+    @Html.CheckBoxFor(s => s.IsVerified)
+    <dd class="col-sm-2">
+        @Html.DisplayNameFor(model => model.IsNotVerified)
+    </dd>
+    @Html.CheckBoxFor(s => s.IsNotVerified)
+    <input type="submit" id="saveBtn" />
+}
