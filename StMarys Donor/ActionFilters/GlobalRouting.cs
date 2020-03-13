@@ -27,7 +27,7 @@ namespace St.Marys_Donor.ActionFilters
                 }
                 else if (_claimsPrincipal.IsInRole("Donor"))
                 {
-                    context.Result = new RedirectToActionResult("Index", "Donors", null);
+                    context.Result = new RedirectToActionResult("Edit", "Donors", null);
                 }
                 else if (_claimsPrincipal.IsInRole("Hospital Administrator"))
                 {
