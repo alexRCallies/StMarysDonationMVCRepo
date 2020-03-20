@@ -115,7 +115,7 @@ namespace St.Marys_Donor.Controllers
                     donorUpdated = JsonConvert.DeserializeObject<Donor>(apiResponse);
                 }
             }
-            return RedirectToAction("Index", "Donors");
+            return RedirectToAction("Index", "Patients");
         }
 
         // GET: Donors/Delete/5
