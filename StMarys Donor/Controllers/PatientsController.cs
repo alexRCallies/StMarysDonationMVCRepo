@@ -185,8 +185,8 @@ namespace St.Marys_Donor.Controllers
             string uniqueFileName = null;
             if (model.ProfileImage != null)
             {
-                string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "images");
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.ProfileImage.FileName;
+                string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "images");  
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.ProfileImage.FileName; 
                 string filePath = Path.Combine(uploadsFolder, uniqueFileName);
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {

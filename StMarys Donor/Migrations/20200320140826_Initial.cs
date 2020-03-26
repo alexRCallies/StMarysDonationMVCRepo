@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace StMarys_Donor.Migrations
 {
-    public partial class PatientList : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -351,10 +351,10 @@ namespace StMarys_Donor.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "90168106-8f4e-41ba-a020-9b7aa1113997", "e39b0408-a13a-48b2-8489-7ff53e4f46ed", "Donor", "DONOR" },
-                    { "19393b34-7d19-4c49-8b8c-fdcef71c024b", "23902ef4-dfae-4ee4-9be4-f1ab30c3f1c1", "Patient", "PATIENT" },
-                    { "1821c1f4-f7bb-47ed-8c98-4d746cc42017", "619282ce-d3a3-45dc-8c0d-fe9568765c5d", "Hospital Administrator", "HOSPITAL ADMINISTRATOR" },
-                    { "cc0f6bb5-278f-49e4-99ea-ed2883938bb2", "f6a00acd-71a1-42e8-a1d9-20b23facd781", "Administrator", "ADMINISTRATOR" }
+                    { "b606919d-6013-4b76-8ad0-865c7841efed", "3221a37b-156f-4ffb-be1a-fb22c300748a", "Donor", "DONOR" },
+                    { "ac958da9-c21a-45d8-8fd2-6897e0d463fd", "6c1104e8-ca76-4bda-abc7-6e0c1df40f4b", "Patient", "PATIENT" },
+                    { "bacc7c9f-b97d-482d-b605-646b141df099", "aec78022-6ba8-4133-bef7-7e002ac2ba60", "Hospital Administrator", "HOSPITAL ADMINISTRATOR" },
+                    { "dddd5968-759b-4f1b-9f59-83afadd9f54c", "1fd37d4d-41aa-4e47-b9e0-ce27695d0923", "Administrator", "ADMINISTRATOR" }
                 });
 
             migrationBuilder.CreateIndex(
